@@ -8,6 +8,9 @@ module.exports = {
         port: process.env.DB_PORT,
         host: process.env.DB_HOST,
         dialect: 'postgres',
+        define: {
+            underscored: true
+        }
     },
     production: {
         username: process.env.DB_USER,
@@ -20,6 +23,9 @@ module.exports = {
         ssl: {
             require: true,
             rejectUnauthorized: false
+        },
+        define: {
+            underscored: true
         }
     },
     test: {
@@ -32,6 +38,9 @@ module.exports = {
         ssl: {
             require: true,
             rejectUnauthorized: false
+        },
+        define: {
+            underscored: true
         }
     },
 }

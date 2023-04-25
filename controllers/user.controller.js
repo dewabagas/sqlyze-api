@@ -3,14 +3,17 @@ const db = require("../config/db");
 const User = require("../models/index").User;
 const { generateToken } = require("../middlewares/auth");
 
-exports.register = async (req, res) => {
-    const { full_name, email, username, password, profile_image_url, age, phone_number } = req.body;
 
+exports.register = async (req, res) => {
+    const { full_name, email, nis, password, role_id, class_id, profile_image, msisdn } = req.body;
+    
+    console.log('register');
     User.findOne({
         where: {
             email: email
         }
     }).then(user => {
+        console.log('userrrr ${user}');
         if (user) {
             return res.status(400).send({
                 message: 'Email already exist'
@@ -22,20 +25,22 @@ exports.register = async (req, res) => {
         User.create({
             full_name: full_name,
             email: email,
-            username: username,
+            nis: nis,
             password: hash,
-            profile_image_url: profile_image_url,
-            age: age,
-            phone_number: phone_number,
+            role_id: role_id,
+            class_id: class_id,
+            profile_image: profile_image,
+            msisdn: msisdn,
         }).then(user => {
             const token = generateToken({
-                id: user.id,
+                user_id: user.user_id,
                 full_name: user.full_name,
                 email: user.email,
-                username: user.username,
-                profile_image_url: user.profile_image_url,
-                age: user.age,
-                phone_number: user.phone_number,
+                nis: user.nis,
+                role_id: user.role_id,
+                class_id: user.class_id,
+                profile_image: user.profile_image,
+                msisdn: user.msisdn,
             })
 
             res.status(201).send({
