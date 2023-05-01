@@ -6,14 +6,13 @@ const { generateToken } = require("../middlewares/auth");
 
 exports.register = async (req, res) => {
     const { full_name, email, nis, password, role_id, class_id, profile_image, msisdn } = req.body;
-    
+
     console.log('register');
     User.findOne({
         where: {
             email: email
         }
     }).then(user => {
-        console.log('userrrr ${user}');
         if (user) {
             return res.status(400).send({
                 message: 'Email already exist'
@@ -33,7 +32,7 @@ exports.register = async (req, res) => {
             msisdn: msisdn,
         }).then(user => {
             const token = generateToken({
-                user_id: user.user_id,
+                id: user.id,
                 full_name: user.full_name,
                 email: user.email,
                 nis: user.nis,
@@ -45,6 +44,7 @@ exports.register = async (req, res) => {
 
             res.status(201).send({
                 status: 'SUCCESS',
+                code: 200,
                 message: 'User created',
                 result: user,
                 token: token,
@@ -85,15 +85,18 @@ exports.login = async (req, res) => {
             id: user.id,
             full_name: user.full_name,
             email: user.email,
-            username: user.username,
-            profile_image_url: user.profile_image_url,
-            age: user.age,
-            phone_number: user.phone_number,
+            nis: user.nis,
+            role_id: user.role_id,
+            class_id: user.class_id,
+            profile_image: user.profile_image,
+            msisdn: user.msisdn,
         })
         res.status(200).send({
             status: 'SUCCESS',
+            code: 200,
             message: 'Login Success',
-            token: token
+            token: token,
+            result: user,
         })
     })
 }
