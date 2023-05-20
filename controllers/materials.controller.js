@@ -39,3 +39,53 @@ exports.getAllMaterials = async (req, res) => {
     });
   }
 };
+
+exports.getMaterialById = async (req, res) => {
+  try {
+    const { materialId } = req.params;
+    console.log('materialId', materialId);
+    const material = await LearningMaterial.findOne({
+      where: { id: materialId },
+      include: [
+        {
+          model: Video,
+          as: 'video',
+        },
+        {
+          model: Podcast,
+          as: 'podcast'
+        },
+        {
+          model: LearningDocument,
+          as: 'learning_document'
+        },
+        {
+          model: LearningPresentation,
+          as: 'learning_presentation',
+          
+        },
+      ],
+    });
+
+    if (!material) {
+      return res.status(404).send({
+        status: "FAILED",
+        code: 404,
+        message: "Material not found",
+      });
+    }
+
+    res.status(200).send({
+      status: "SUCCESS",
+      code: 200,
+      message: "Material fetched successfully",
+      result: material,
+    });
+  } catch (error) {
+    console.error("error", error);
+    res.status(500).send({
+      status: "FAILED",
+      message: "Material fetching failed",
+    });
+  }
+};
