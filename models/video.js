@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
   Video.init({
     material_id: DataTypes.INTEGER,
     title: DataTypes.STRING,
-    duration: DataTypes.INTEGER,
     url: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Video',
-    tableName: 'videos'
+    tableName: 'videos',
+    underscored: true
   });
   return Video;
 };

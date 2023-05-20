@@ -1,5 +1,5 @@
 const db = require("../config/db");
-const { LearningMaterial, Video, Podcast, MaterialDocument, LearningPresentation } = require("../models/index");
+const { LearningMaterial, Video, Podcast, LearningDocument, LearningPresentation } = require("../models/index");
 
 exports.getAllMaterials = async (req, res) => {
   try {
@@ -7,15 +7,20 @@ exports.getAllMaterials = async (req, res) => {
       include: [
         {
           model: Video,
+          as: 'video',
         },
         {
           model: Podcast,
+          as: 'podcast'
         },
         {
-          model: MaterialDocument,
+          model: LearningDocument,
+          as: 'learning_document'
         },
         {
           model: LearningPresentation,
+          as: 'learning_presentation',
+          
         },
       ],
     });

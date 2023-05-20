@@ -3,22 +3,23 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class MaterialDocument extends Model {
+  class LearningDocument extends Model {
     static associate(models) {
-      MaterialDocument.belongsTo(models.LearningMaterial, {
+      LearningDocument.belongsTo(models.LearningMaterial, {
         foreignKey: 'material_id',
       });
     }
   }
-  MaterialDocument.init({
+  LearningDocument.init({
     material_id: DataTypes.INTEGER,
     title: DataTypes.STRING,
     document_type: DataTypes.STRING,
     url: DataTypes.STRING,
   }, {
     sequelize,
-    modelName: 'MaterialDocument',
-    tableName: 'material_documents'
+    modelName: 'LearningDocument',
+    tableName: 'learning_documents',
+    underscored: true
   });
-  return MaterialDocument;
+  return LearningDocument;
 };

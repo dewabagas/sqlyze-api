@@ -5,17 +5,23 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class LearningMaterial extends Model {
     static associate(models) {
+      console.log('moels : ')
+      console.log(models)
       LearningMaterial.hasOne(models.Video, {
         foreignKey: 'material_id',
+        as: 'video'
       });
       LearningMaterial.hasOne(models.Podcast, {
         foreignKey: 'material_id',
+        as: 'podcast'
       });
-      LearningMaterial.hasOne(models.MaterialDocument, {
+      LearningMaterial.hasOne(models.LearningDocument, {
         foreignKey: 'material_id',
+        as: 'learning_document'
       });
       LearningMaterial.hasOne(models.LearningPresentation, {
         foreignKey: 'material_id',
+        as: 'learning_presentation'
       });
     }
   }
@@ -25,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'LearningMaterial',
-    tableName: 'learning_materials'
+    tableName: 'learning_materials',
+    underscored: true
   });
   return LearningMaterial;
 };

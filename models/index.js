@@ -1,5 +1,6 @@
 'use strict';
 
+const { log } = require('console');
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
@@ -26,6 +27,8 @@ fs
   });
 
 Object.keys(db).forEach(modelName => {
+  // console.log('model name : ')
+  // console.log(modelName)
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }

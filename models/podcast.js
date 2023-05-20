@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
   Podcast.init({
     material_id: DataTypes.INTEGER,
     title: DataTypes.STRING,
-    duration: DataTypes.INTEGER,
     url: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Podcast',
-    tableName: 'podcasts'
+    tableName: 'podcasts',
+    underscored: true
   });
   return Podcast;
 };
