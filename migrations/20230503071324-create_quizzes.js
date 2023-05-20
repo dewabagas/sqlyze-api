@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('videos', {
+    await queryInterface.createTable('quizzes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,18 +10,23 @@ module.exports = {
       },
       material_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'learning_materials',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
       title: {
         type: Sequelize.STRING
       },
-      url: {
-        type: Sequelize.STRING
+      is_final_exam: {
+        type: Sequelize.BOOLEAN
+      },
+      duration: {
+        type: Sequelize.INTEGER
+      },
+      passing_score: {
+        type: Sequelize.INTEGER
       },
       created_at: {
         allowNull: false,
@@ -34,6 +39,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('videos');
+    await queryInterface.dropTable('quizzes');
   }
 };

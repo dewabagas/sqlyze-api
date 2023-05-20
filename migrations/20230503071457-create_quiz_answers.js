@@ -1,30 +1,26 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('material_documents', {
+    await queryInterface.createTable('quiz_answers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      material_id: {
+      question_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'learning_materials',
+          model: 'quiz_questions',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
-      title: {
-        type: Sequelize.STRING
+      answer: {
+        type: Sequelize.TEXT
       },
-      document_type: {
-        type: Sequelize.STRING
-      },
-      url: {
-        type: Sequelize.STRING
+      is_correct: {
+        type: Sequelize.BOOLEAN
       },
       created_at: {
         allowNull: false,
@@ -37,6 +33,7 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('material_documents');
+    await queryInterface.drop
+    Table('quiz_answers');
   }
 };

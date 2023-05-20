@@ -20,9 +20,6 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      duration: {
-        type: Sequelize.INTEGER
-      },
       url: {
         type: Sequelize.STRING
       },

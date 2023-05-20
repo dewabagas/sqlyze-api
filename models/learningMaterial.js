@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       LearningMaterial.hasOne(models.MaterialDocument, {
         foreignKey: 'material_id',
       });
+      LearningMaterial.hasOne(models.LearningPresentation, {
+        foreignKey: 'material_id',
+      });
     }
   }
   LearningMaterial.init({

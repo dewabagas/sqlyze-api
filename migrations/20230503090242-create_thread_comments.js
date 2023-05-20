@@ -1,39 +1,43 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('videos', {
+    await queryInterface.createTable('thread_comments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      material_id: {
+      thread_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'learning_materials',
+          model: 'discussion_threads',
           key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        }
       },
-      title: {
-        type: Sequelize.STRING
+      user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
-      url: {
-        type: Sequelize.STRING
+      content: {
+        type: Sequelize.TEXT
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('videos');
+    await queryInterface.dropTable('thread_comments');
   }
 };

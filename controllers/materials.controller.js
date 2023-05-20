@@ -1,5 +1,5 @@
 const db = require("../config/db");
-const { LearningMaterial, Video, Podcast, MaterialDocument } = require("../models/index");
+const { LearningMaterial, Video, Podcast, MaterialDocument, LearningPresentation } = require("../models/index");
 
 exports.getAllMaterials = async (req, res) => {
   try {
@@ -13,6 +13,9 @@ exports.getAllMaterials = async (req, res) => {
         },
         {
           model: MaterialDocument,
+        },
+        {
+          model: LearningPresentation,
         },
       ],
     });
