@@ -3,7 +3,10 @@ const { LearningMaterial, Video, Podcast, LearningDocument, LearningPresentation
 
 exports.getAllMaterials = async (req, res) => {
   try {
+    const { typeId } = req.params;
+    console.log('typeId', typeId);
     const materials = await LearningMaterial.findAll({
+      where: { material_type: typeId },
       include: [
         {
           model: Video,

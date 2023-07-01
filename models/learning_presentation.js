@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   LearningPresentation.init({
     material_id: DataTypes.INTEGER,
     title: DataTypes.STRING,
-    file_url: DataTypes.STRING(1024),
+    file_url: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'LearningPresentation',
