@@ -3,36 +3,47 @@ const { LearningMaterial, Video, Podcast, LearningDocument, LearningPresentation
 
 exports.getAllMaterials = async (req, res) => {
   try {
-    const { typeId } = req.params;
-    console.log('typeId', typeId);
     const materials = await LearningMaterial.findAll({
-      where: { material_type: typeId },
       include: [
         {
           model: Video,
-          as: 'video',
+          foreign_key: 'material_id'
         },
         {
           model: Podcast,
-          as: 'podcast'
+          foreign_key: 'material_id'
         },
         {
           model: LearningDocument,
-          as: 'learning_document'
+          foreign_key: 'material_id'
         },
         {
           model: LearningPresentation,
-          as: 'learning_presentation',
-          
+          foreign_key: 'material_id'          
         },
       ],
+    });
+
+    // Map over the materials to create new objects with the keys in lowercase
+    const transformedMaterials = materials.map(material => {
+      // Convert the material instance to a plain object
+      const plainMaterial = material.get({ plain: true });
+
+      // Map over the keys of the plainMaterial object to create a new object
+      // with the keys converted to lowercase
+      const newMaterial = Object.keys(plainMaterial).reduce((result, key) => {
+        result[key.toLowerCase()] = plainMaterial[key];
+        return result;
+      }, {});
+
+      return newMaterial;
     });
 
     res.status(200).send({
       status: "SUCCESS",
       code: 200,
       message: "Materials fetched successfully",
-      result: materials,
+      result: transformedMaterials,
     });
   } catch (error) {
     console.error("error", error);
@@ -46,26 +57,28 @@ exports.getAllMaterials = async (req, res) => {
 exports.getMaterialById = async (req, res) => {
   try {
     const { materialId } = req.params;
-    console.log('materialId', materialId);
     const material = await LearningMaterial.findOne({
       where: { id: materialId },
       include: [
         {
           model: Video,
           as: 'video',
+          foreign_key: 'material_id'
         },
         {
           model: Podcast,
-          as: 'podcast'
+          as: 'podcast',
+          foreign_key: 'material_id'
         },
         {
           model: LearningDocument,
-          as: 'learning_document'
+          as: 'learning_document',
+          foreign_key: 'material_id'
         },
         {
           model: LearningPresentation,
           as: 'learning_presentation',
-          
+          foreign_key: 'material_id'         
         },
       ],
     });
