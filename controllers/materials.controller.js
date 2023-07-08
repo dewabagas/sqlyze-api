@@ -1,5 +1,5 @@
 const db = require("../config/db");
-const { LearningMaterial, Video, Podcast, LearningDocument, LearningPresentation } = require("../models/index");
+const { LearningMaterial, Video, Podcast, LearningDocument, LearningPresentation, LearningStep } = require("../models/index");
 
 exports.getAllMaterials = async (req, res) => {
   try {
@@ -7,7 +7,7 @@ exports.getAllMaterials = async (req, res) => {
       include: [
         {
           model: Video,
-          foreign_key: 'material_id'
+          foreign_key: 'material_id',
         },
         {
           model: Podcast,
@@ -19,6 +19,10 @@ exports.getAllMaterials = async (req, res) => {
         },
         {
           model: LearningPresentation,
+          foreign_key: 'material_id'          
+        },
+        {
+          model: LearningStep,
           foreign_key: 'material_id'          
         },
       ],

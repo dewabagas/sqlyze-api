@@ -7,17 +7,17 @@ module.exports = {
     return queryInterface.bulkInsert('learning_documents', [
       {
         material_id: 1,
-        title: 'Document: Introduction to Programming',
+        title: 'Pengenalan DDL',
         document_type: 'PDF',
-        url: 'https://www.example.com/document/someURL',
+        url: 'https://drive.google.com/uc?id=1dQflASwaosA_R2oOfTvsimoB1Rxtvgra',
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         material_id: 2,
-        title: 'Document: Advanced Programming Concepts',
+        title: 'CREATE Statement',
         document_type: 'PDF',
-        url: 'https://www.example.com/document/someOtherURL',
+        url: 'https://drive.google.com/uc?id=1dQflASwaosA_R2oOfTvsimoB1Rxtvgra',
         created_at: new Date(),
         updated_at: new Date(),
       },

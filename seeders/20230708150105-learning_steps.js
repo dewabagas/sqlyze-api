@@ -1,21 +1,21 @@
-// File: seeders/videos-seeder.js
+// File: seeders/learning_steps.js
 
 'use strict';
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('videos', [
+    return queryInterface.bulkInsert('learning_steps', [
       {
         material_id: 1,
-        title: 'Pengenalan DDL',
-        url: 'U4z3KvWeMOc',
+        title: 'Pengenalan Data Definition Language',
+        url: 'http://10.0.2.2:3000/htmls/ddl_1_pengenalan_ddl.html',
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         material_id: 2,
         title: 'CREATE Statement',
-        url: 'Pengenalan DDL',
+        url: 'http://10.0.2.2:3000/htmls/ddl_1_pengenalan_ddl.html',
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -23,6 +23,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('videos', null, {});
+    return queryInterface.bulkDelete('learning_steps', null, {});
   },
 };

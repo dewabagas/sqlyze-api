@@ -7,14 +7,14 @@ module.exports = {
     return queryInterface.bulkInsert('learning_presentations', [
       {
         material_id: 1,
-        title: 'Presentation: Introduction to Programming',
-        file_url: 'https://www.example.com/presentation/someURL',
+        title: 'Presentation: Pengenalan DDL',
+        file_url: 'https://drive.google.com/uc?id=1NcV5Pq0wje6xTO1taiWTGjqIP-uMXGO6',
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         material_id: 2,
-        title: 'Presentation: Advanced Programming Concepts',
+        title: 'Presentation: CREATE Statement',
         file_url: 'https://www.example.com/presentation/someOtherURL',
         created_at: new Date(),
         updated_at: new Date(),

@@ -8,8 +8,8 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('users', [
       {
-        email: 'bagas.dewa@eupi.edu',
-        password: bcrypt.hashSync('bagas1`', 10),
+        email: 'bagas.dewa@upi.edu',
+        password: bcrypt.hashSync('bagas1', 10),
         role: 'student',
         created_at: new Date(),
         updated_at: new Date(),

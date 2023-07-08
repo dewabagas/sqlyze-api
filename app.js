@@ -1,5 +1,6 @@
 const express = require('express')
 require('dotenv').config();
+const path = require('path');
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -9,6 +10,12 @@ const lessonRoutes = require("./routes/material")
 app.use(express.json())
 app.use('/users', userRoutes)
 app.use('/lessons', lessonRoutes)
+
+app.get('/htmls/:filename', function(req, res) {
+  const filename = req.params.filename;
+  res.sendFile(path.join(__dirname, 'html_files', filename));
+});
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

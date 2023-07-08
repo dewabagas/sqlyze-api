@@ -5,16 +5,19 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class LearningMaterial extends Model {
     static associate(models) {
-      LearningMaterial.hasMany(models.Podcast, {
+      LearningMaterial.hasOne(models.Podcast, {
         foreignKey: 'material_id',
       });
-      LearningMaterial.hasMany(models.Video, {
+      LearningMaterial.hasOne(models.Video, {
         foreignKey: 'material_id',
       });
-      LearningMaterial.hasMany(models.LearningPresentation, {
+      LearningMaterial.hasOne(models.LearningPresentation, {
         foreignKey: 'material_id',
       });
-      LearningMaterial.hasMany(models.LearningDocument, {
+      LearningMaterial.hasOne(models.LearningDocument, {
+        foreignKey: 'material_id',
+      });
+      LearningMaterial.hasMany(models.LearningStep, {
         foreignKey: 'material_id',
       });
     }

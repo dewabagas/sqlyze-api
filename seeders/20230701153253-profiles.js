@@ -6,7 +6,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('profiles', [
       {
-        user_id: 1, // assuming the user_id is 1 for user1
+        user_id: 1,
         full_name: 'Bagas Dewanggono',
         nis: '1904351',
         email: 'bagas.dewa@upi.edu',
@@ -18,7 +18,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        user_id: 2, // assuming the user_id is 2 for user2
+        user_id: 2, 
         full_name: 'Bagas KLAR',
         nis: '1904351',
         email: 'bagas.dewanggono@klarsmile.com',
