@@ -24,13 +24,8 @@ exports.getAllMaterials = async (req, res) => {
       ],
     });
 
-    // Map over the materials to create new objects with the keys in lowercase
     const transformedMaterials = materials.map(material => {
-      // Convert the material instance to a plain object
       const plainMaterial = material.get({ plain: true });
-
-      // Map over the keys of the plainMaterial object to create a new object
-      // with the keys converted to lowercase
       const newMaterial = Object.keys(plainMaterial).reduce((result, key) => {
         result[key.toLowerCase()] = plainMaterial[key];
         return result;
