@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   LearningMaterial.init({
     title: DataTypes.STRING,
-    description: DataTypes.TEXT,
+    description: DataTypes.STRING,
+    material_type: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'LearningMaterial',
@@ -33,3 +34,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return LearningMaterial;
 };
+

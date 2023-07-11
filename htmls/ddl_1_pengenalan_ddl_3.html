@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css">
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+        .content-ct {
+            text-align: justify;
+        }
+
+        .content-ct-title {
+            text-align: center;
+        }
+
+        .feature span {
+            font-size: 5em;
+            color: #016cc7;
+        }
+
+        .speaker .feature {
+            width: 31.333333%;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+            margin-right: 20px;
+            border: 3px solid #f6f6f6;
+            border-radius: 5px;
+        }
+
+        .speaker-img {
+            max-width: 40%;
+            border: 4px solid #efefef;
+            border-radius: 50%;
+        }
+
+        .responsive {
+            max-width: 100%;
+            /* height: auto; */
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Jenis Perintah DDL</h3>
+    <pre>
+        <button class="btn-copy" data-clipboard-target="#sql-code">Copy</button>
+        <code id="sql-code" class="sql">
+        CREATE TABLE buku (
+            id_buku INT PRIMARY KEY,
+            judul VARCHAR(100) NOT NULL,
+            pengarang VARCHAR(100) NOT NULL,
+            tahun_terbit INT,
+            penerbit VARCHAR(100)
+        );
+        </code>
+    </pre>
+
+
+    <script>
+        new Clipboard('.btn-copy');
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

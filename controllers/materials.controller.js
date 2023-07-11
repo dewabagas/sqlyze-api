@@ -1,37 +1,46 @@
 const db = require("../config/db");
 const { LearningMaterial, Video, Podcast, LearningDocument, LearningPresentation, LearningStep } = require("../models/index");
+const _ = require('lodash');
 
 exports.getAllMaterials = async (req, res) => {
+  const { materialType } = req.params;
+  console.log('params', req.params);
   try {
     const materials = await LearningMaterial.findAll({
+      where: {
+        material_type: materialType, 
+      },
       include: [
         {
           model: Video,
-          foreign_key: 'material_id',
+          foreignKey: 'material_id'
         },
         {
           model: Podcast,
-          foreign_key: 'material_id'
+          foreignKey: 'material_id'
         },
         {
           model: LearningDocument,
-          foreign_key: 'material_id'
+          foreignKey: 'material_id'
         },
         {
           model: LearningPresentation,
-          foreign_key: 'material_id'          
+          foreignKey: 'material_id'
         },
         {
           model: LearningStep,
-          foreign_key: 'material_id'          
+          foreignKey: 'material_id'
         },
       ],
+      order: [ 
+        ['id', 'ASC'], 
+      ], 
     });
 
     const transformedMaterials = materials.map(material => {
       const plainMaterial = material.get({ plain: true });
       const newMaterial = Object.keys(plainMaterial).reduce((result, key) => {
-        result[key.toLowerCase()] = plainMaterial[key];
+        result[_.snakeCase(key)] = plainMaterial[key];
         return result;
       }, {});
 
@@ -53,6 +62,7 @@ exports.getAllMaterials = async (req, res) => {
   }
 };
 
+
 exports.getMaterialById = async (req, res) => {
   try {
     const { materialId } = req.params;
@@ -61,23 +71,23 @@ exports.getMaterialById = async (req, res) => {
       include: [
         {
           model: Video,
-          as: 'video',
-          foreign_key: 'material_id'
+          foreignKey: 'material_id'
         },
         {
           model: Podcast,
-          as: 'podcast',
-          foreign_key: 'material_id'
+          foreignKey: 'material_id'
         },
         {
           model: LearningDocument,
-          as: 'learning_document',
-          foreign_key: 'material_id'
+          foreignKey: 'material_id'
         },
         {
           model: LearningPresentation,
-          as: 'learning_presentation',
-          foreign_key: 'material_id'         
+          foreignKey: 'material_id'
+        },
+        {
+          model: LearningStep,
+          foreignKey: 'material_id'
         },
       ],
     });
@@ -90,11 +100,17 @@ exports.getMaterialById = async (req, res) => {
       });
     }
 
+    const plainMaterial = material.get({ plain: true });
+    const newMaterial = Object.keys(plainMaterial).reduce((result, key) => {
+      result[_.snakeCase(key)] = plainMaterial[key];
+      return result;
+    }, {});
+
     res.status(200).send({
       status: "SUCCESS",
       code: 200,
       message: "Material fetched successfully",
-      result: material,
+      result: newMaterial,
     });
   } catch (error) {
     console.error("error", error);
@@ -104,3 +120,4 @@ exports.getMaterialById = async (req, res) => {
     });
   }
 };
+
