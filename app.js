@@ -7,11 +7,13 @@ const port = process.env.PORT || 3000
 const userRoutes = require("./routes/user")
 const lessonRoutes = require("./routes/material")
 const quizRoutes = require("./routes/quiz")
+const analyticRoutes = require("./routes/analytic")
 
 app.use(express.json())
 app.use('/users', userRoutes)
 app.use('/lessons', lessonRoutes)
 app.use('/quizzes', quizRoutes)
+app.use('/analytics', analyticRoutes)
 
 // Middleware for setting MIME type for CSS files
 app.use(function(req, res, next) {
