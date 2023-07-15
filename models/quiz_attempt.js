@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     score: DataTypes.INTEGER,
     correct_answers: DataTypes.INTEGER,
     incorrect_answers: DataTypes.INTEGER,
-    duration: DataTypes.TIME,
+    start_time: DataTypes.DATE,
+    end_time: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'QuizAttempt',
