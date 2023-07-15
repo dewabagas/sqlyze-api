@@ -1,4 +1,4 @@
-const { Quiz, QuizQuestion } = require('../models/index');
+const { Quiz, QuizQuestion, QuizAnswer, QuizAttempt } = require('../models/index');
 const _ = require('lodash');
 
 exports.getQuizById = async (req, res) => {
@@ -90,3 +90,104 @@ exports.getQuizQuestions = async (req, res) => {
     });
   }
 };
+
+exports.submitQuizAnswer = async (req, res) => {
+    const { quizId, userId, questionId, answerId } = req.body;
+  
+    try {
+      const answer = await QuizAnswer.findOne({
+        where: { id: answerId, question_id: questionId }
+      });
+  
+      if (!answer) {
+        return res.status(404).send({
+          status: "FAILED",
+          code: 404,
+          message: "Answer not found",
+        });
+      }
+  
+      const [attempt, created] = await QuizAttempt.findOrCreate({
+        where: { quiz_id: quizId, user_id: userId },
+        defaults: {
+          score: 0,
+          correct_answers: 0,
+          incorrect_answers: 0,
+          duration: 0, 
+        }
+      });
+  
+      if (answer.is_correct) {
+        attempt.score += 1; 
+        attempt.correct_answers += 1;
+      } else {
+        attempt.incorrect_answers += 1;
+      }
+  
+      await attempt.save();
+  
+      res.status(200).send({
+        status: "SUCCESS",
+        code: 200,
+        message: "Quiz Answer submitted successfully",
+        result: attempt,
+      });
+  
+    } catch (error) {
+      console.error("error", error);
+      res.status(500).send({
+        status: "FAILED",
+        message: "Quiz Answer submission failed",
+      });
+    }
+  };
+
+  exports.getQuizResult = async (req, res) => {
+    const { quizId, userId } = req.params;
+  
+    try {
+      const quiz = await Quiz.findByPk(quizId);
+      if (!quiz) {
+        return res.status(404).send({
+          status: "FAILED",
+          code: 404,
+          message: "Quiz not found",
+        });
+      }
+  
+      const attempt = await QuizAttempt.findOne({
+        where: { quiz_id: quizId, user_id: userId }
+      });
+  
+      if (!attempt) {
+        return res.status(404).send({
+          status: "FAILED",
+          code: 404,
+          message: "Quiz attempt not found",
+        });
+      }
+  
+      const totalQuestions = await quiz.countQuizQuestions();
+      const score = attempt.score;
+      const correctAnswers = attempt.correct_answers;
+      const incorrectAnswers = totalQuestions - correctAnswers;
+  
+      res.status(200).send({
+        status: "SUCCESS",
+        code: 200,
+        message: "Quiz result fetched successfully",
+        result: {
+          total_questions: totalQuestions,
+          correct_answers: correctAnswers,
+          incorrect_answers: incorrectAnswers,
+          score: score,
+        },
+      });
+    } catch (error) {
+      console.error("error", error);
+      res.status(500).send({
+        status: "FAILED",
+        message: "Fetching quiz result failed",
+      });
+    }
+  };
