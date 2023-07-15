@@ -6,10 +6,12 @@ const port = process.env.PORT || 3000
 
 const userRoutes = require("./routes/user")
 const lessonRoutes = require("./routes/material")
+const quizRoutes = require("./routes/quiz")
 
 app.use(express.json())
 app.use('/users', userRoutes)
 app.use('/lessons', lessonRoutes)
+app.use('/quizzes', quizRoutes)
 
 // Middleware for setting MIME type for CSS files
 app.use(function(req, res, next) {
@@ -20,6 +22,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(express.static('public'));
+app.use('/htmls', express.static('htmls'));  // added line
 
 app.get('/htmls/:filename', function(req, res) {
   const filename = req.params.filename;

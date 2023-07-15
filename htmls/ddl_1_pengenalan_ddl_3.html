@@ -4,73 +4,197 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css">
     <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <script>hljs.initHighlightingOnLoad();</script>
-    <style>
-        .content-ct {
-            text-align: justify;
-        }
-
-        .content-ct-title {
-            text-align: center;
-        }
-
-        .feature span {
-            font-size: 5em;
-            color: #016cc7;
-        }
-
-        .speaker .feature {
-            width: 31.333333%;
-            -webkit-transition: all 0.3s;
-            -moz-transition: all 0.3s;
-            transition: all 0.3s;
-            margin-right: 20px;
-            border: 3px solid #f6f6f6;
-            border-radius: 5px;
-        }
-
-        .speaker-img {
-            max-width: 40%;
-            border: 4px solid #efefef;
-            border-radius: 50%;
-        }
-
-        .responsive {
-            max-width: 100%;
-            /* height: auto; */
-        }
-    </style>
 </head>
 
 <body>
-    <h3>Jenis Perintah DDL</h3>
-    <pre>
-        <button class="btn-copy" data-clipboard-target="#sql-code">Copy</button>
-        <code id="sql-code" class="sql">
-        CREATE TABLE buku (
-            id_buku INT PRIMARY KEY,
-            judul VARCHAR(100) NOT NULL,
-            pengarang VARCHAR(100) NOT NULL,
-            tahun_terbit INT,
-            penerbit VARCHAR(100)
-        );
-        </code>
-    </pre>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl">Jenis - Jenis Perintah DDL</h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://img.freepik.com/free-vector/analytics-data-science-database-analysis-statistical-report-information-processing-automation-datacenter-expert-making-report-vector-isolated-concept-metaphor-illustration_335657-2781.jpg?w=826&t=st=1689329765~exp=1689330365~hmac=eda860531d46804c3b92e9d1d81d65db732b5a6157b7075458d6d2e2f4ed1a82"
+                        alt="Pengertian DDL" width="250" height="auto" class="responsive">
+                </div>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <b>CREATE</b>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p><strong>Perintah ini digunakan untuk membuat struktur baru dalam basis data, seperti
+                                        tabel, indeks, atau tampilan.</strong></p>
+                                <ol class="list-group list-group-numbered">
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">CREATE TABLE</div>
+                                            <p> Membuat tabel baru dengan kolom dan tipe data yang ditentukan. Contoh
+                                                sintaks:
+                                                <code>CREATE TABLE nama_tabel (kolom1 tipe_data, kolom2 tipe_data, ...);</code>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">CREATE INDEX</div>
+                                            <p>Membuat indeks pada kolom yang ditentukan untuk meningkatkan kecepatan
+                                                pencarian data. Contoh sintaks:
+                                                <code>CREATE INDEX nama_indeks ON nama_tabel (nama_kolom);</code>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">CREATE VIEW</div>
+                                            <p>Membuat tampilan baru yang merupakan hasil dari suatu query. Contoh
+                                                sintaks:
+                                                <code>CREATE VIEW nama_tampilan AS SELECT kolom1, kolom2 FROM nama_tabel;</code>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <b>ALTER</b>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p><strong>Perintah ini digunakan untuk mengubah struktur basis data yang ada, seperti
+                                        menambahkan kolom baru, menghapus kolom, atau mengubah tipe data kolom.</strong>
+                                </p>
+                                <ol class="list-group list-group-numbered">
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">ALTER TABLE</div>
+                                            <p> Mengubah struktur tabel yang ada, seperti menambahkan kolom, menghapus
+                                                kolom, atau mengganti nama kolom. Contoh sintaks:
+                                                <code>ALTER TABLE nama_tabel ADD kolom tipe_data;</code>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">DROP</div>
+                                            <p>Perintah ini digunakan untuk menghapus struktur basis data yang ada,
+                                                seperti tabel, indeks, atau tampilan.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">DROP TABLE</div>
+                                            <p>Menghapus tabel yang ada dalam basis data. Contoh sintaks:
+                                                <code>DROP TABLE nama_tabel;</code>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">DROP INDEX</div>
+                                            <p>Menghapus indeks yang ada pada kolom tertentu dalam tabel. Contoh
+                                                sintaks:
+                                                <code>DROP INDEX nama_indeks ON nama_tabel;</code>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">DROP VIEW</div>
+                                            <p>Menghapus tampilan yang ada dalam basis data. Contoh sintaks:
+                                                <code>DROP VIEW nama_tampilan;</code>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <b>TRUNCATE</b>
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Perintah ini digunakan untuk <b>menghapus semua baris</b> dari tabel <b>tanpa
+                                        menghapus
+                                        struktur tabel</b> itu sendiri. Dibandingkan dengan perintah DELETE, <b>TRUNCATE
+                                        lebih
+                                        cepat dan efisien</b> karena tidak mencatat setiap penghapusan baris secara
+                                    individual
+                                    dalam log transaksi. Contoh sintaks: <code>TRUNCATE TABLE nama_tabel;</code></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <b>RENAME</b>
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p><strong>Perintah ini digunakan untuk mengganti nama objek yang ada dalam basis data,
+                                        seperti tabel</strong></p>
+                                <ol class="list-group list-group-numbered">
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">RENAME TABLE</div>
+                                            <p>Mengganti nama tabel yang ada dalam basis data. Contoh sintaks:
+                                                <code>ALTER TABLE nama_tabel_lama RENAME TO nama_tabel_baru;</code>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
+            </div>
+        </div>
+    </div>
     <script>
-        new Clipboard('.btn-copy');
+        $('.btn').click(function () {
+            $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+        });
     </script>
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

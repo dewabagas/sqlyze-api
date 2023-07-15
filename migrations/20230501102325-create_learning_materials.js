@@ -17,6 +17,9 @@ module.exports = {
       material_type: {
         type: Sequelize.INTEGER
       },
+      is_locked: {
+        type: Sequelize.BOOLEAN
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
