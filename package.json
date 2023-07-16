@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
+    "start-production": "node -r dotenv/config app.js dotenv_config_path=.env.production dotenv_config_debug=true",
     "deploy": "sequelize db:migrate && sequelize db:seed:all && npm start"
   },
   "author": "",

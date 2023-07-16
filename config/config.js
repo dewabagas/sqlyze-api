@@ -20,10 +20,10 @@ module.exports = {
         port: process.env.DB_PORT,
         host: process.env.DB_HOST,
         dialect: 'postgres',
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
-        },
+        // ssl: {
+        //     require: true,
+        //     rejectUnauthorized: false
+        // },
         define: {
             underscored: true
         }
