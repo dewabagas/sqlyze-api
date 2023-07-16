@@ -31,6 +31,11 @@ app.get('/htmls/:filename', function(req, res) {
   res.sendFile(path.join(__dirname, 'htmls', filename));
 });
 
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to sqlize api." });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
