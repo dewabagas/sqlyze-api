@@ -3,15 +3,17 @@ const Joi = require('joi')
 
 exports.validateUserRegister = async (req, res, next) => {
     const schema = Joi.object().keys({
-        email: Joi.string().email().required(),
         full_name: Joi.string().required(),
-        nis: Joi.string()
-            .required(),
+        email: Joi.string().email().required(),
+        nis: Joi.string(),
+
         password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).min(6).required(),
-        role_id: Joi.number().integer().required(),
-        class_id: Joi.number().integer().required(),
-        profile_image: Joi.string().required(),
+        role: Joi.string()
+            .required(),
         msisdn: Joi.number().integer().required(),
+        gender: Joi.string(),
+        birthdate: Joi.date().required(),
+        profile_image_url: Joi.string().required(),
     });
     if (schema.validate(req.body).error) {
         res.json({ error: schema.validate(req.body).error.message });

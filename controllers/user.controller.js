@@ -3,7 +3,7 @@ const { User, Profile } = require('../models');
 const { generateToken } = require("../middlewares/auth");
 
 exports.register = async (req, res) => {
-  const { full_name, email, nis, password, msisdn } = req.body;
+  const { full_name, email, nis, password, role, msisdn, birthdate, gender, profile_image_url } = req.body;
 
   try {
     const existingUser = await User.findOne({ where: { email } });
@@ -13,8 +13,8 @@ exports.register = async (req, res) => {
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
-    
-    const user = await User.create({ email, password: hash });
+
+    const user = await User.create({ email, password: hash, role });
 
     if (user) {
       const profile = await Profile.create({
@@ -23,8 +23,11 @@ exports.register = async (req, res) => {
         nis,
         email,
         msisdn,
+        birthdate,
+        gender,
+        profile_image_url
       });
-  
+
       const token = generateToken({ id: user.id, email: user.email });
 
       return res.status(201).json({
@@ -35,13 +38,14 @@ exports.register = async (req, res) => {
         profile,
         token,
       });
-    } 
+    }
 
   } catch (error) {
     console.error(error);
     return res.status(503).json({ message: 'User creation failed' });
   }
 };
+
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
