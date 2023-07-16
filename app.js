@@ -31,6 +31,22 @@ app.get('/htmls/:filename', function(req, res) {
   res.sendFile(path.join(__dirname, 'htmls', filename));
 });
 
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to sqlize api." });
+});
+
+// sync models with the database, tables will be automatically created on first run
+// https://sequelize.org/docs/v6/core-concepts/model-basics/#model-synchronization
+const db = require("./models");
+db.sequelize.sync()
+.then(() => {
+  console.log("Synced db.");
+})
+.catch((err) => {
+  console.log("Failed to sync db: " + err.message);
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
