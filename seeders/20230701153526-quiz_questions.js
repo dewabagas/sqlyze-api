@@ -6,6 +6,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('quiz_questions', [
       {
+        id: 1,
         quiz_id: 1,
         question: 'What is the capital of Indonesia?',
         question_type: 'multiple_choice',
@@ -13,6 +14,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
+        id: 2,
         quiz_id: 2,
         question: 'Who is the current president of Indonesia?',
         question_type: 'multiple_choice',
