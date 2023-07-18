@@ -25,8 +25,8 @@ exports.getQuizByMaterialId = async (req, res) => {
       });
     }
 
-    const questionCount = await QuizQuestion.count({ 
-      where: { quiz_id: quiz.id } 
+    const questionCount = await QuizQuestion.count({
+      where: { quiz_id: quiz.id }
     });
 
     // We are adding questionCount attribute to our quiz object
@@ -49,7 +49,7 @@ exports.getQuizByMaterialId = async (req, res) => {
       created_at: newQuiz.created_at,
       updated_at: newQuiz.updated_at,
     };
-    
+
     res.status(200).send({
       status: "SUCCESS",
       code: 200,
@@ -116,11 +116,11 @@ exports.getQuizQuestions = async (req, res) => {
 };
 
 exports.submitQuizAnswer = async (req, res) => {
-  const { quizId, userId, questionId, answerId } = req.body;
+  const { quiz_id, user_id, question_id, answer_id } = req.body;
 
   try {
     const answer = await QuizAnswer.findOne({
-      where: { id: answerId, question_id: questionId }
+      where: { id: answer_id, question_id: question_id }
     });
 
     if (!answer) {
@@ -132,12 +132,14 @@ exports.submitQuizAnswer = async (req, res) => {
     }
 
     const [attempt, created] = await QuizAttempt.findOrCreate({
-      where: { quiz_id: quizId, user_id: userId },
+      where: { quiz_id: quiz_id, user_id: user_id },
       defaults: {
         score: 0,
         correct_answers: 0,
         incorrect_answers: 0,
         duration: 0,
+        start_time: new Date(), // set initial start_time
+        end_time: new Date(),   // set initial end_time
       }
     });
 
@@ -165,6 +167,8 @@ exports.submitQuizAnswer = async (req, res) => {
     });
   }
 };
+
+
 
 exports.getQuizResult = async (req, res) => {
   const { quizId, userId } = req.params;
