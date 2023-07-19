@@ -196,7 +196,7 @@ exports.getQuizResult = async (req, res) => {
           include: [
             {
               model: Profile,
-              attributes: ['full_name'],
+              attributes: ['full_name', 'profile_image_url'], // Add profile_image_url here
             },
           ],
         },
@@ -235,6 +235,7 @@ exports.getQuizResult = async (req, res) => {
         quiz_name: attempt.Quiz.title,
         user_id: attempt.User.id,
         full_name: attempt.User.Profile.full_name,
+        profile_image_url: attempt.User.Profile.profile_image_url, // Add profile_image_url here
         total_questions: totalQuestions,
         correct_answers: correctAnswers,
         incorrect_answers: incorrectAnswers,
@@ -252,6 +253,7 @@ exports.getQuizResult = async (req, res) => {
     });
   }
 };
+
 
 
 
