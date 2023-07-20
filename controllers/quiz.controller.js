@@ -12,7 +12,7 @@ exports.getQuizByMaterialId = async (req, res) => {
       include: [
         {
           model: QuizQuestion,
-          attributes: [] // We are not selecting any attribute from QuizQuestion
+          attributes: [] 
         },
       ],
     });
@@ -29,7 +29,6 @@ exports.getQuizByMaterialId = async (req, res) => {
       where: { quiz_id: quiz.id }
     });
 
-    // We are adding questionCount attribute to our quiz object
     quiz.dataValues.questionCount = questionCount;
 
     const plainQuiz = quiz.get({ plain: true });
@@ -45,7 +44,7 @@ exports.getQuizByMaterialId = async (req, res) => {
       is_final_exam: newQuiz.is_final_exam,
       duration: newQuiz.duration,
       passing_score: newQuiz.passing_score,
-      question_count: newQuiz.question_count, // place it here
+      question_count: newQuiz.question_count, 
       created_at: newQuiz.created_at,
       updated_at: newQuiz.updated_at,
     };
@@ -54,7 +53,7 @@ exports.getQuizByMaterialId = async (req, res) => {
       status: "SUCCESS",
       code: 200,
       message: "Quiz fetched successfully",
-      result: reorderedQuiz, // use the reordered object here
+      result: reorderedQuiz, 
     });
 
   } catch (error) {
@@ -65,9 +64,6 @@ exports.getQuizByMaterialId = async (req, res) => {
     });
   }
 };
-
-
-
 
 exports.getQuizQuestions = async (req, res) => {
   const { quizId } = req.params;
@@ -123,34 +119,33 @@ exports.submitQuizAnswer = async (req, res) => {
       where: { id: answer_id, question_id: question_id }
     });
 
-    if (!answer) {
-      return res.status(404).send({
-        status: "FAILED",
-        code: 404,
-        message: "Answer not found",
-      });
-    }
+    //... rest of your code 
 
-    const [attempt, created] = await QuizAttempt.findOrCreate({
-      where: { quiz_id: quiz_id, user_id: user_id },
-      defaults: {
-        score: 0,
-        correct_answers: 0,
-        incorrect_answers: 0,
-        duration: 0,
-        start_time: new Date(), // set initial start_time
-        end_time: new Date(),   // set initial end_time
-      }
+    // Check if all quizzes in the material have been completed
+    const materialId = await Quiz.findOne({ where: { id: quiz_id }, attributes: ['material_id'] });
+    const totalQuizzesInMaterial = await Quiz.count({ where: { material_id: materialId }});
+    const totalAttemptsInMaterial = await QuizAttempt.count({ 
+      where: { 
+        user_id: user_id, 
+        quiz_id: { 
+          [Op.in]: Sequelize.literal(`(SELECT id FROM quizzes WHERE material_id = ${materialId})`) 
+        }
+      } 
     });
 
-    if (answer.is_correct) {
-      attempt.score += 1;
-      attempt.correct_answers += 1;
-    } else {
-      attempt.incorrect_answers += 1;
+    // If all quizzes have been attempted, unlock the next material
+    if(totalQuizzesInMaterial === totalAttemptsInMaterial) {
+      const nextMaterial = await LearningMaterial.findOne({ 
+        where: { 
+          id: { [Op.gt]: materialId }
+        }, 
+        order: [['id', 'ASC']] 
+      });
+      if(nextMaterial) {
+        nextMaterial.is_locked = false;
+        await nextMaterial.save();
+      }
     }
-
-    await attempt.save();
 
     res.status(200).send({
       status: "SUCCESS",
@@ -167,6 +162,7 @@ exports.submitQuizAnswer = async (req, res) => {
     });
   }
 };
+
 
 
 
@@ -188,7 +184,7 @@ exports.getQuizResult = async (req, res) => {
       include: [
         {
           model: Quiz,
-          attributes: ['id', 'title'], // Assuming 'title' is the field for quiz_name
+          attributes: ['id', 'title'], 
         },
         {
           model: User,
@@ -196,7 +192,7 @@ exports.getQuizResult = async (req, res) => {
           include: [
             {
               model: Profile,
-              attributes: ['full_name', 'profile_image_url'], // Add profile_image_url here
+              attributes: ['full_name', 'profile_image_url'], 
             },
           ],
         },
@@ -218,7 +214,6 @@ exports.getQuizResult = async (req, res) => {
     const startTime = attempt.start_time;
     const endTime = attempt.end_time;
 
-    // Calculate the total duration if start_time and end_time are not null
     let totalDuration = null;
     if (attempt.start_time && attempt.end_time) {
       const startTime = new Date(attempt.start_time);
@@ -235,7 +230,7 @@ exports.getQuizResult = async (req, res) => {
         quiz_name: attempt.Quiz.title,
         user_id: attempt.User.id,
         full_name: attempt.User.Profile.full_name,
-        profile_image_url: attempt.User.Profile.profile_image_url, // Add profile_image_url here
+        profile_image_url: attempt.User.Profile.profile_image_url, 
         total_questions: totalQuestions,
         correct_answers: correctAnswers,
         incorrect_answers: incorrectAnswers,
