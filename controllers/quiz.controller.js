@@ -5,6 +5,7 @@ const _ = require('lodash');
 
 exports.getQuizByMaterialId = async (req, res) => {
   const { materialId } = req.params;
+  const userId = req.id; // This is now retrieved from req.id, not req.user
 
   try {
     const quiz = await Quiz.findOne({
@@ -29,7 +30,12 @@ exports.getQuizByMaterialId = async (req, res) => {
       where: { quiz_id: quiz.id }
     });
 
+    const attempt = await QuizAttempt.findOne({
+      where: { quiz_id: quiz.id, user_id: userId }
+    });
+
     quiz.dataValues.questionCount = questionCount;
+    quiz.dataValues.hasAttempted = !!attempt;
 
     const plainQuiz = quiz.get({ plain: true });
     const newQuiz = Object.keys(plainQuiz).reduce((result, key) => {
@@ -44,7 +50,8 @@ exports.getQuizByMaterialId = async (req, res) => {
       is_final_exam: newQuiz.is_final_exam,
       duration: newQuiz.duration,
       passing_score: newQuiz.passing_score,
-      question_count: newQuiz.question_count, 
+      question_count: newQuiz.question_count,
+      has_attempted: newQuiz.has_attempted,
       created_at: newQuiz.created_at,
       updated_at: newQuiz.updated_at,
     };
@@ -64,6 +71,7 @@ exports.getQuizByMaterialId = async (req, res) => {
     });
   }
 };
+
 
 exports.getQuizQuestions = async (req, res) => {
   const { quizId } = req.params;
@@ -127,6 +135,18 @@ exports.submitQuizAnswer = async (req, res) => {
       });
     }
 
+    const previousAttempt = await QuizAttempt.findOne({
+      where: { quiz_id: quiz_id, user_id: user_id }
+    });
+
+    if (previousAttempt) {
+      return res.status(403).send({
+        status: "FAILED",
+        code: 403,
+        message: "Quiz has already been attempted",
+      });
+    }
+
     const [attempt, created] = await QuizAttempt.findOrCreate({
       where: { quiz_id: quiz_id, user_id: user_id },
       defaults: {
@@ -163,7 +183,6 @@ exports.submitQuizAnswer = async (req, res) => {
     });
   }
 };
-
 
 
 exports.getQuizResult = async (req, res) => {
