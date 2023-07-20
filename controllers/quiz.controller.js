@@ -1,6 +1,6 @@
 const { sequelize } = require('../models');
 
-const { Quiz, QuizQuestion, QuizAnswer, QuizAttempt, User, Profile } = require('../models/index');
+const { Quiz, QuizQuestion, QuizAnswer, QuizAttempt, User, Profile, LearningMaterial } = require('../models/index');
 const _ = require('lodash');
 
 exports.getQuizByMaterialId = async (req, res) => {
@@ -119,33 +119,34 @@ exports.submitQuizAnswer = async (req, res) => {
       where: { id: answer_id, question_id: question_id }
     });
 
-    //... rest of your code 
+    if (!answer) {
+      return res.status(404).send({
+        status: "FAILED",
+        code: 404,
+        message: "Answer not found",
+      });
+    }
 
-    // Check if all quizzes in the material have been completed
-    const materialId = await Quiz.findOne({ where: { id: quiz_id }, attributes: ['material_id'] });
-    const totalQuizzesInMaterial = await Quiz.count({ where: { material_id: materialId }});
-    const totalAttemptsInMaterial = await QuizAttempt.count({ 
-      where: { 
-        user_id: user_id, 
-        quiz_id: { 
-          [Op.in]: Sequelize.literal(`(SELECT id FROM quizzes WHERE material_id = ${materialId})`) 
-        }
-      } 
+    const [attempt, created] = await QuizAttempt.findOrCreate({
+      where: { quiz_id: quiz_id, user_id: user_id },
+      defaults: {
+        score: 0,
+        correct_answers: 0,
+        incorrect_answers: 0,
+        duration: 0,
+        start_time: new Date(), 
+        end_time: new Date(),   
+      }
     });
 
-    // If all quizzes have been attempted, unlock the next material
-    if(totalQuizzesInMaterial === totalAttemptsInMaterial) {
-      const nextMaterial = await LearningMaterial.findOne({ 
-        where: { 
-          id: { [Op.gt]: materialId }
-        }, 
-        order: [['id', 'ASC']] 
-      });
-      if(nextMaterial) {
-        nextMaterial.is_locked = false;
-        await nextMaterial.save();
-      }
+    if (answer.is_correct) {
+      attempt.score += 1;
+      attempt.correct_answers += 1;
+    } else {
+      attempt.incorrect_answers += 1;
     }
+
+    await attempt.save();
 
     res.status(200).send({
       status: "SUCCESS",
@@ -162,7 +163,6 @@ exports.submitQuizAnswer = async (req, res) => {
     });
   }
 };
-
 
 
 
@@ -184,7 +184,7 @@ exports.getQuizResult = async (req, res) => {
       include: [
         {
           model: Quiz,
-          attributes: ['id', 'title'], 
+          attributes: ['id', 'title', 'material_id'], 
         },
         {
           model: User,
@@ -221,6 +221,26 @@ exports.getQuizResult = async (req, res) => {
       totalDuration = Math.abs(endTime - startTime) / 1000; // in seconds
     }
 
+    // If user has passed the quiz
+    // if (score >= quiz.passing_score) {
+      const currentMaterial = await LearningMaterial.findOne({
+        where: { id: quiz.material_id }
+      });
+
+      if (currentMaterial) {
+        const nextMaterial = await LearningMaterial.findOne({
+          where: { id: currentMaterial.id + 1 }
+        });
+
+        console.log('nextMaterial', nextMaterial);
+
+        if (nextMaterial) {
+          nextMaterial.is_locked = false;
+          await nextMaterial.save();
+        }
+      }
+    // }
+
     res.status(200).send({
       status: "SUCCESS",
       code: 200,
@@ -248,6 +268,7 @@ exports.getQuizResult = async (req, res) => {
     });
   }
 };
+
 
 
 
