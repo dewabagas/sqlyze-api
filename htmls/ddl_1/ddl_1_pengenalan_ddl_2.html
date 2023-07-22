@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <div id="header"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl">Perbedaan DDL, DML dan DCL</h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://k21academy.com/wp-content/uploads/2022/02/SQL_Diagram-1024x972.webp"
+                        alt="Pengertian DDL" width="330" height="auto" class="responsive">
+                </div>
+                <div id="definisi-fungsi-ddl">
+                    <h6 class="mt-4 text-center" data-target="#definisi-fungsi-ddl"><b>DDL</b></h5>
+                        <p>DDL digunakan untuk <b>mendefinisikan dan mengelola struktur basis data.</b> Yang termasuk dalam DDL
+                            meliputi
+                            <b>CREATE, ALTER, DROP, TRUNCATE, dan RENAME</b>. Perintah ini
+                            memungkinkan pengguna untuk <b>mendefinisikan</b> struktur basis data <b>(CREATE)</b>, <b>mengubah</b> struktur
+                            tersebut
+                            <b>(ALTER), menghapusnya (DROP), menghapus semua</b> data dalam struktur tersebut <b>tanpa menghapus
+                            struktur itu
+                            sendiri (TRUNCATE), dan mengganti nama</b> struktur tersebut <b>(RENAME).</b></p>
+                </div>
+                <div id="definisi-fungsi-ddl">
+                    <h6 class="mt-4 text-center" data-target="#definisi-fungsi-ddl"><b>DML</b></h5>
+                        <p>DML adalah bagian dari SQL yang digunakan untuk <b>mengakses dan memanipulasi data</b>. Perintah
+                            yang termasuk
+                            dalam DML adalah <b>SELECT, INSERT, UPDATE, dan DELETE. SELECT</b> digunakan untuk <b>memilih data</b>
+                            dari satu atau
+                            lebih tabel. <b>INSERT</b> digunakan untuk <b>menambahkan</b> baris baru ke tabel. <b>UPDATE</b> digunakan untuk
+                            <b>memodifikasi</b>
+                            baris yang ada di tabel. <b>DELETE</b> digunakan untuk <b>menghapus</b> baris dari tabel.</p>
+                </div>
+                <div id="definisi-fungsi-ddl">
+                    <h6 class="mt-4 text-center" data-target="#definisi-fungsi-ddl"><b>DCL</b></h5>
+                        <p>DCL digunakan untuk <b>mengontrol akses</b> ke data dalam basis data. Perintah yang termasuk dalam
+                            DCL adalah
+                            <b>GRANT dan REVOKE</b>. <b>GRANT</b> digunakan untuk <b>memberikan hak akses</b> ke pengguna atau peran
+                            tertentu. Hak ini
+                            bisa mencakup kemampuan untuk menjalankan perintah DML dan/atau DDL, serta hak lain seperti
+                            hak untuk
+                            membuat prosedur yang disimpan dan fungsi. <b>REVOKE</b> digunakan untuk <b>mencabut hak akses</b> yang
+                            sebelumnya
+                            telah diberikan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>

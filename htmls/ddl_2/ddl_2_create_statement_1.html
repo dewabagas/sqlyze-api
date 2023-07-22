@@ -1,21 +1,8 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" <link
-        rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/default.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css">
-    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/styles.css">
-    <script>hljs.initHighlightingOnLoad();</script>
-</head>
-
 <body>
+    <div id="header" /></div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 col-md-6">
@@ -28,26 +15,30 @@
                 <div id="definisi-fungsi-ddl">
                     <p>CREATE statement pada DDL (Data Definition Language) database merupakan perintah SQL yang
                         digunakan untuk <b>membuat objek baru</b> dalam database, seperti <b>tabel, indeks, tampilan
-                        (view),
-                        fungsi, prosedur</b>, dan objek-objek lainnya. Dalam konteks database relasional, CREATE statement
+                            (view),
+                            fungsi, prosedur</b>, dan objek-objek lainnya. Dalam konteks database relasional, CREATE
+                        statement
                         sering digunakan untuk <b>mendefinisikan</b> struktur tabel, kolom, dan hubungan antar tabel.
                     </p>
 
-                    <p>Tujuan utama CREATE statement adalah <b>untuk menetapkan struktur dan karakteristik</b> dari objek yang
+                    <p>Tujuan utama CREATE statement adalah <b>untuk menetapkan struktur dan karakteristik</b> dari
+                        objek yang
                         akan dibuat, termasuk tipe data, batasan (constraints), dan kunci (keys). CREATE statement
-                        adalah bagian penting dari DDL karena membantu dalam <b>mengatur dan mengelola</b> database dengan
+                        adalah bagian penting dari DDL karena membantu dalam <b>mengatur dan mengelola</b> database
+                        dengan
                         lebih <b>efisien dan efektif</b>.</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
-        crossorigin="anonymous"></script>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl">Constraint dalam CREATE TABLE</h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://img.freepik.com/free-vector/hand-drawn-flat-design-sql-illustration_23-2149245997.jpg?w=826&t=st=1690028436~exp=1690029036~hmac=284e17b2c1d2013b2d73cf6dc0593e7c57789b08e31feabd2acb1ec6b241ae49"
+                        alt="Pengertian DDL" width="330" height="auto" class="responsive">
+                </div>
+                <div id="definisi-fungsi-ddl">
+                    <p>Constraint adalah <b>aturan atau batasan</b> yang diterapkan pada kolom atau tabel untuk
+                        <b>menjaga
+                            integritas data.</b> Beberapa constraint yang umum digunakan dalam CREATE TABLE:
+                    </p>
+
+                    <ol>
+                        <li><b>PRIMARY KEY</b>, Menentukan satu atau lebih kolom sebagai kunci utama tabel.</li>
+                        <li><b>FOREIGN KEY</b>, Menentukan kolom yang menghubungkan tabel dengan tabel lain.</li>
+                        <li><b>UNIQUE</b>, Memastikan nilai dalam kolom tidak memiliki duplikasi</li>
+                        <li><b>NOT NULL</b>, Memastikan kolom harus memiliki nilai, tidak boleh kosong</li>
+                        <li><b>CHECK</b>, Memastikan nilai dalam kolom memenuhi kondisi tertentu</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl">
+                    Tipe Data Pada SQL
+                    <div class="text-center">
+                        <img class="center-image mb-4"
+                            src="https://www.mysqltutorial.org/wp-content/uploads/0211/03/MySQL-Data-Types.jpg"
+                            alt="Pengertian DDL" width="350" height="auto" class="responsive" />
+                    </div>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <b>Numerik</b>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ol>
+                                        <li>
+                                            <p><b>INT</b>, Integer adalah tipe data numerik yang digunakan untuk
+                                                menyimpan bilangan bulat. Rentang nilai INT biasanya antara
+                                                -2.147.483.648 hingga 2.147.483.647.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>SMALLINT</b>, Small integer adalah tipe data numerik yang digunakan
+                                                untuk menyimpan bilangan bulat dengan rentang nilai yang lebih kecil
+                                                daripada INT. Rentang nilai SMALLINT biasanya antara -32.768 hingga
+                                                32.767.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>FLOAT</b>, Float adalah tipe data numerik yang digunakan untuk
+                                                menyimpan bilangan pecahan dengan presisi tunggal. Rentang nilai dan
+                                                presisi FLOAT bergantung pada sistem basis data yang digunakan. Contoh :
+                                                3.14159</p>
+                                        </li>
+                                        <li>
+                                            <p><b>REAL</b>, Real adalah tipe data numerik yang digunakan untuk menyimpan
+                                                bilangan pecahan dengan presisi ganda. Rentang nilai dan presisi REAL
+                                                bergantung pada sistem basis data yang digunakan.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>DECIMAL</b>, Decimal adalah tipe data numerik yang digunakan untuk
+                                                menyimpan
+                                                bilangan pecahan dengan presisi tetap. Pengguna dapat menentukan jumlah
+                                                digit total (P) dan jumlah digit desimal (S).
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p><b>NUMERIC</b>, Numeric mirip dengan DECIMAL, tetapi memiliki presisi
+                                                yang lebih
+                                                tinggi dan rentang yang lebih besar.</p>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <b>Karakter</b>
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ol>
+                                        <li>
+                                            <p><b>CHAR</b>, Character adalah tipe data karakter yang digunakan untuk
+                                                menyimpan
+                                                teks dengan panjang tetap. Panjang maksimum karakter yang dapat disimpan
+                                                dalam CHAR tergantung pada sistem basis data yang digunakan.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>VARCHAR</b>, Variable character adalah tipe data karakter yang
+                                                digunakan
+                                                untuk menyimpan teks dengan panjang variabel. Panjang maksimum karakter
+                                                yang dapat disimpan dalam VARCHAR juga tergantung pada sistem basis data
+                                                yang digunakan.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>TEXT</b>, Text adalah tipe data karakter yang digunakan untuk
+                                                menyimpan teks
+                                                dengan panjang yang sangat besar. TEXT biasanya digunakan untuk
+                                                menyimpan data seperti artikel, deskripsi produk, atau komentar.</p>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <b>Tanggal dan Waktu</b>
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ol>
+                                        <li>
+                                            <p><b>DATE</b>, Date adalah tipe data yang digunakan untuk menyimpan tanggal
+                                                dalam format YYYY-MM-DD.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>TIME</b>, Time adalah tipe data yang digunakan untuk menyimpan waktu
+                                                dalam format HH:MI:SS</p>
+                                        </li>
+                                        <li>
+                                            <p><b>TIMESTAMP</b>, Timestamp adalah tipe data yang digunakan untuk
+                                                menyimpan informasi tanggal dan waktu dalam satu kolom. Format TIMESTAMP
+                                                biasanya adalah YYYY-MM-DD HH:MI:SS. Contoh : 2023-07-04 13:45:30</p>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <b>Biner</b>
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ol>
+                                        <li>
+                                            <p><b>BINARY</b>, Binary adalah tipe data yang digunakan untuk menyimpan
+                                                data biner dengan panjang tetap. Panjang maksimum data biner yang dapat
+                                                disimpan dalam BINARY tergantung pada sistem basis data yang digunakan.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p><b>VARBINARY</b>, Variable binary adalah tipe data yang digunakan untuk
+                                                menyimpan data biner dengan panjang variabel. Panjang maksimum data
+                                                biner yang dapat disimpan dalam VARBINARY juga tergantung pada sistem
+                                                basis data yang digunakan.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>IMAGE</b>, Image adalah tipe data biner yang digunakan untuk menyimpan
+                                                gambar atau data biner dengan ukuran yang sangat besar</p>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    <b>Lainnya</b>
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ol>
+                                        <li>
+                                            <p><b>BOOLEAN</b>, Boolean adalah tipe data yang digunakan untuk menyimpan
+                                                nilai
+                                                benar (TRUE) atau salah (FALSE).</p>
+                                        </li>
+                                        <li>
+                                            <p><b>ENUM</b>, Enum adalah tipe data yang digunakan untuk menyimpan
+                                                nilai-nilai
+                                                yang telah didefinisikan sebelumnya. Setiap kolom ENUM hanya dapat
+                                                menyimpan satu nilai dari daftar nilai yang telah ditentukan. Misalnya,
+                                                ENUM('Merah', 'Biru', 'Hijau') untuk menyimpan warna.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>SET</b>, SET mirip dengan ENUM, tetapi dapat menyimpan beberapa nilai
+                                                dari
+                                                daftar nilai yang telah ditentukan. Misalnya, SET('Baca', 'Tulis',
+                                                'Edit') untuk menyimpan izin pengguna.</p>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>
