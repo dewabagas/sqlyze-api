@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl"><b>Keterbatasan Truncate dan Keamanan
+                        Data</b></h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://img.freepik.com/free-vector/cloud-hosting-concept-illustration_114360-730.jpg?w=1380&t=st=1690039860~exp=1690040460~hmac=6f9efd1f13acda16d3275093005231fe530afc16bb59a7a5b18b1455c0d921ca"
+                        alt="Pengertian DDL" width="330" height="auto" class="responsive">
+                </div>
+                <h6><b>Keterbatasan TRUNCATE dalam sistem basis data yang berbeda</b></h6>
+                <p>
+                    Dalam beberapa sistem basis data, seperti PostgreSQL dan Oracle, TRUNCATE dapat <b>memiliki
+                    keterbatasan</b> dalam penggunaannya. Misalnya, <b>pada PostgreSQL, TRUNCATE tidak dapat digunakan pada
+                    tabel yang memiliki FOREIGN KEY constraint. Di Oracle, jika Anda ingin menggunakan TRUNCATE pada
+                    tabel yang memiliki FOREIGN KEY constraint, Anda harus menggunakan opsi CASCADE.</b>
+                </p>
+                <h6><b>Keamanan Data</b></h6>
+                <p>Dalam konteks keamanan data, penting untuk memastikan bahwa <b>hanya pengguna yang berwenang yang dapat
+                    menjalankan TRUNCATE Statement pada tabel</b>. Sebagai administrator basis data, Anda harus mengatur
+                    izin pengguna dengan hati-hati dan memastikan bahwa hanya pengguna yang memiliki hak yang tepat yang
+                    dapat mengakses perintah ini, karena penghapusan data dengan <b>TRUNCATE bersifat permanen dan tidak
+                    dapat dikembalikan</b> dalam beberapa sistem basis data.</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>

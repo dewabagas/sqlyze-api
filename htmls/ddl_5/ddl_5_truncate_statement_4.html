@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl">
+                    Contoh <b>TRUNCATE</b> Statement
+                </h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://img.freepik.com/free-vector/cloud-hosting-concept-illustration_114360-730.jpg?w=1380&t=st=1690039860~exp=1690040460~hmac=6f9efd1f13acda16d3275093005231fe530afc16bb59a7a5b18b1455c0d921ca"
+                        alt="Pengertian DDL" width="250" height="auto" class="responsive" />
+                </div>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <b>Menghapus Semua Data Dalam Tabel</b>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+
+                                <pre><code class="language-sql">TRUNCATE TABLE nama_tabel;</code></pre>
+
+                                <p>Query di atas digunakan untuk menghapus semua data dalam sebuah tabel, tapi tabel itu
+                                    sendiri masih ada. Kamu perlu mengganti nama_tabel dengan nama tabel yang datanya
+                                    ingin kamu hapus. <br /> Contoh : </p>
+                                <pre><code class="language-sql">TRUNCATE TABLE peminjaman;</code></pre>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <b>Menghapus Semua Data Dalam Beberapa Tabel</b>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <pre><code class="language-sql">TRUNCATE TABLE peminjaman;
+TRUNCATE TABLE anggota;</code></pre>
+                                <p>Setelah menjalankan query di atas, semua data dalam tabel 'peminjaman' dan 'anggota'
+                                    akan dihapus, tapi struktur tabel-tabel itu sendiri masih ada.</p>
+                                <p>Perlu diingat bahwa TRUNCATE menghapus semua baris data dalam tabel dan tidak dapat
+                                    digunakan untuk menghapus baris tertentu berdasarkan kondisi yang ditentukan,
+                                    seperti yang bisa dilakukan oleh perintah DELETE. Oleh karena itu, gunakan perintah
+                                    ini dengan hati-hati.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>
