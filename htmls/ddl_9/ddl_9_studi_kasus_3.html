@@ -7,49 +7,51 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 col-md-6">
-                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl"><b>Database Sistem Informasi Sekolah</b>
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl"><b>Database Sistem Ecommerce</b>
                 </h5>
                 <div class="text-center">
                     <img class="center-image mb-4"
-                        src="https://sqlyze-api.onrender.com/htmls/assets/images/db_sekolah.png" alt="Pengertian DDL"
+                        src="https://sqlyze-api.onrender.com/htmls/assets/images/db_ecommerce.png" alt="Pengertian DDL"
                         width="330" height="auto" class="responsive">
                 </div>
                 <ol>
                     <li>
                         <h6><b>Membuat Database</b></h6>
                     </li>
-                    <pre><code class="language-sql">CREATE DATABASE sekolah;</code></pre>
+                    <pre><code class="language-sql">CREATE DATABASE ecommerce;</code></pre>
                     <li>
-                        <h6><b>Membuat Tabel Siswa</b></h6>
+                        <h6><b>Membuat Tabel Produk</b></h6>
                     </li>
-                    <pre><code class="language-sql">CREATE TABLE siswa (
+                    <pre><code class="language-sql">CREATE TABLE produk (
+id INT PRIMARY KEY AUTO_INCREMENT,
+nama_produk VARCHAR(50) NOT NULL,
+harga DECIMAL(10,2) NOT NULL,
+kategori_id INT);</code></pre>
+                    <li>
+                        <h6><b>Membuat Tabel Kategori</b></h6>
+                    </li>
+                    <pre><code class="language-sql">CREATE TABLE kategori (
+id INT PRIMARY KEY AUTO_INCREMENT,
+nama_kategori VARCHAR(50) NOT NULL);</code></pre>
+                    <li>
+                        <h6><b>Membuat Tabel Pelanggan</b></h6>
+                    </li>
+                    <pre><code class="language-sql">CREATE TABLE pelanggan (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nama VARCHAR(50) NOT NULL,
 alamat TEXT,
-kelas_id INT);</code></pre>
+email VARCHAR(50) UNIQUE NOT NULL);</code></pre>
                     <li>
-                        <h6><b>Membuat Tabel Guru</b></h6>
+                        <h6><b>Membuat Tabel Mata Pesanan</b></h6>
                     </li>
-                    <pre><code class="language-sql">CREATE TABLE guru (
+                    <pre><code class="language-sql">CREATE TABLE pesanan (
 id INT PRIMARY KEY AUTO_INCREMENT,
-nama VARCHAR(50) NOT NULL,
-alamat TEXT,
-mata_pelajaran_id INT);</code></pre>
-                    <li>
-                        <h6><b>Membuat Tabel Kelas</b></h6>
-                    </li>
-                    <pre><code class="language-sql">CREATE TABLE kelas (
-id INT PRIMARY KEY AUTO_INCREMENT,
-nama_kelas VARCHAR(20) NOT NULL);</code></pre>
-                    <li>
-                        <h6><b>Membuat Tabel Mata Pelajaran</b></h6>
-                    </li>
-                    <pre><code class="language-sql">CREATE TABLE mata_pelajaran (
-id INT PRIMARY KEY AUTO_INCREMENT,
-nama_pelajaran VARCHAR(50) NOT NULL);</code></pre>
+pelanggan_id INT,
+tanggal_pemesanan DATE NOT NULL,
+status ENUM('Dikemas', 'Dikirim', 'Diterima', 'Batal') NOT NULL);</code></pre>
                 </ol>
                 <h6><b>Hasil Akhir : </b></h6>
-                <img class="center-image mb-4" src="https://sqlyze-api.onrender.com/htmls/assets/images/db_sekolah.png"
+                <img class="center-image mb-4" src="https://sqlyze-api.onrender.com/htmls/assets/images/db_ecommerce.png"
                     alt="Pengertian DDL" width="330" height="auto" class="responsive">
             </div>
         </div>

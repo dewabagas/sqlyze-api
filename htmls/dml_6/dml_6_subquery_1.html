@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl">SUBQUERY</h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://www.boardinfinity.com/blog/content/images/2023/02/Subquery-1.png"
+                        alt="Pengertian DDL" width="330" height="auto" class="responsive">
+                </div>
+                <h6><b>Definisi Subquery</b></h6>
+                <p>Subquery dalam basis data adalah <b>query yang berada di dalam query lain</b>. Subquery adalah cara yang
+                    <b>kuat dan fleksibel untuk memanipulasi dan mengakses data</b> dalam basis data. Subquery dapat digunakan
+                    dalam berbagai operasi DML (Data Manipulation Language), seperti <b>SELECT, INSERT, UPDATE, dan DELETE.</b>
+                </p>
+                <p>
+                    Subquery digunakan untuk mengambil data yang akan digunakan oleh query utama sebagai kondisi untuk
+                    operasi lebih lanjut. <b>Hasil dari subquery ini biasanya diproses oleh query utama.</b> Subquery bisa
+                    berada di berbagai bagian dari pernyataan SQL, termasuk SELECT, FROM, WHERE, dan HAVING clauses.
+                    <br />Berikut adalah contoh penggunaan subquery dalam pernyataan SELECT:
+
+                </p>
+                <pre><code class="language-sql">SELECT employee_name 
+FROM employee 
+WHERE salary > (SELECT AVG(salary) FROM employee);</code></pre>
+                <p>Dalam contoh ini, subquery (SELECT AVG(salary) FROM employee) menghitung rata-rata gaji karyawan.
+                    Query utama kemudian mengambil daftar nama karyawan yang gajinya lebih besar dari rata-rata gaji
+                    tersebut.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>

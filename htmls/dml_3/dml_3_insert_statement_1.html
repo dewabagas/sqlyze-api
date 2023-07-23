@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl">INSERT Statement</h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://img.freepik.com/free-vector/abstract-creative-website-hosting-illustration_23-2149227348.jpg?w=826&t=st=1690081914~exp=1690082514~hmac=d8dfe9452a669dbd8da85a49f8299d41d84a9721604664ea1bae2701a18cadfa"
+                        alt="Pengertian DDL" width="330" height="auto" class="responsive">
+                </div>
+                <h6><b>Pendahuluan</b></h6>
+                <p>INSERT statement adalah pernyataan dalam Data Manipulation Language (DML) yang digunakan untuk
+                    <b>menambahkan baris baru</b> dalam tabel dalam sebuah database relasional. Statement ini memungkinkan kita
+                    untuk <b>memasukkan satu atau lebih baris ke dalam tabel</b> sekaligus.
+                    <br />Berikut adalah struktur umum dari INSERT statement:
+                <pre><code class="language-sql">INSERT INTO table_name 
+(column1, column2, column3,...)
+VALUES (value1, value2, value3,...);</code></pre>
+                <p>Dimana : </p>
+
+                <ol>
+                    <li>
+                        <p><b>table_name</b>, nama tabel di mana data akan dimasukkan.</p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>column1, column2, ..., columnN</b>, nama kolom di tabel yang akan diisi data.
+
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>value1, value2, ..., valueN</b>, nilai yang akan dimasukkan ke dalam kolom.
+
+                        </p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>

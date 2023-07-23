@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl">INSERT Statement</h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://img.freepik.com/free-vector/web-hosting-service-information-chains-content-management-networking-connection-synchronization-internet-server-data-storage_335657-830.jpg?w=826&t=st=1690084842~exp=1690085442~hmac=66f453a69d59cf9be4991860988c405f75c63e8aa7cf412a69eead9141e29329"
+                        alt="Pengertian DDL" width="330" height="auto" class="responsive">
+                </div>
+                <h6><b>Pendahuluan</b></h6>
+                <p>UPDATE statement adalah bagian dari Data Manipulation Language (DML) yang digunakan untuk
+                    memodifikasi data yang ada dalam sebuah tabel di database relasional. Statement ini memungkinkan
+                    kita untuk mengubah nilai dari satu atau lebih kolom dalam satu atau lebih baris dalam tabel.
+                    <br />Berikut adalah struktur umum dari pernyataan UPDATE:
+                </p>
+                <pre><code class="language-sql">UPDATE table_name
+SET column1 = value1, column2 = value2,...
+WHERE condition;</code></pre>
+                <p>Dimana : </p>
+
+
+
+                <ol>
+                    <li>
+                        <p><b>table_name,</b> nama tabel yang datanya akan diperbarui.</p>
+                    </li>
+                    <li>
+                        <p><b>column1 = value1, column2 = value2, ...,</b> daftar kolom dan nilai baru yang akan diatur.
+                            Anda
+                            dapat
+                            memperbarui satu atau lebih kolom sekaligus.</p>
+                    </li>
+                    <li>
+                        <p><b>WHERE condition,</b> kondisi yang menentukan baris mana yang akan diperbarui. Jika kondisi
+                            tidak
+                            ditentukan,
+                            semua baris dalam tabel akan diperbarui, yang biasanya bukan yang diinginkan.</p>
+                    </li>
+                </ol>
+                <p>Sebagai contoh, jika Anda memiliki tabel siswa dengan kolom nama, alamat, dan kelas, dan Anda ingin
+                    memperbarui alamat untuk siswa bernama 'Budi' menjadi 'Bandung', Anda dapat melakukannya dengan
+                    perintah berikut:
+                </p>
+                <pre><code class="language-sql">UPDATE siswa
+SET alamat = 'Bandung'
+WHERE nama = 'Budi';</code></pre>
+                <p>Perintah ini akan mengubah nilai kolom alamat menjadi 'Bandung' untuk semua baris di tabel siswa di
+                    mana nilai kolom nama adalah 'Budi'</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>

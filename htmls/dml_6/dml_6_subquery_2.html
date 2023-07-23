@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl">
+                    Contoh <b>SUBQUERY</b>
+                </h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://www.boardinfinity.com/blog/content/images/2023/02/Subquery-1.png"
+                        alt="Pengertian DDL" width="330" height="auto" class="responsive">
+                </div>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <b>Subquery dalam SELECT</b>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Subquery dalam SELECT memungkinkan Anda untuk melakukan query pada hasil dari query
+                                    lain. Misalnya, Anda mungkin ingin mencari siswa dengan nilai terbaik dalam suatu
+                                    mata pelajaran. Anda dapat mencapai ini dengan subquery
+                                </p>
+                                <pre><code class="language-sql">SELECT * FROM siswa 
+WHERE id IN 
+(SELECT siswa_id FROM nilai 
+WHERE mata_pelajaran = 'Matematika' 
+ORDER BY nilai DESC LIMIT 1);</code></pre>
+                                <p>Dalam contoh ini, subquery mencari siswa_id dengan nilai tertinggi untuk
+                                    'Matematika'. Query utama kemudian mengambil detail dari siswa tersebut.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <b>Subquery dalam INSERT</b>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>
+                                    Subquery dalam INSERT memungkinkan Anda untuk menambahkan data dari hasil query
+                                    lain. Misalnya, jika Anda ingin menyalin data siswa dari satu tabel ke tabel lain,
+                                    Anda bisa menggunakan subquery.
+                                </p>
+                                <pre><code class="language-sql">INSERT INTO siswa_backup 
+(id, nama, alamat) 
+SELECT id, nama, alamat FROM siswa 
+WHERE tahun_masuk < 2020;</code></pre>
+                                <p>Dalam contoh ini, subquery mengambil semua siswa yang masuk sebelum 2020. Query utama
+                                    kemudian memasukkan data ini ke dalam tabel siswa_backup.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <b>Subquery dalam UPDATE</b>
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>Subquery dalam UPDATE memungkinkan Anda untuk memperbarui data berdasarkan hasil
+                                    query lain. Misalnya, jika Anda ingin menaikkan nilai siswa berdasarkan prestasi
+                                    mereka, Anda bisa menggunakan subquery.
+                                </p>
+                                <pre><code class="language-sql">UPDATE nilai SET nilai = nilai + 10 
+WHERE siswa_id IN 
+(SELECT id FROM siswa 
+WHERE prestasi = 'Juara 1');</code></pre>
+                                <p>
+                                    Dalam contoh ini, subquery mencari semua siswa yang meraih 'Juara 1'. Query utama
+                                    kemudian menambahkan 10 poin ke nilai mereka.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>

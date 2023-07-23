@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl"><b>Database Sistem Manajemen Inventori</b>
+                </h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://sqlyze-api.onrender.com/htmls/assets/images/db_inventori.png" alt="Pengertian DDL"
+                        width="330" height="auto" class="responsive">
+                </div>
+                <ol>
+                    <li>
+                        <h6><b>Membuat Database</b></h6>
+                    </li>
+                    <pre><code class="language-sql">CREATE DATABASE inventori;</code></pre>
+                    <li>
+                        <h6><b>Membuat Tabel Barang</b></h6>
+                    </li>
+                    <pre><code class="language-sql">CREATE TABLE barang (
+id INT PRIMARY KEY AUTO_INCREMENT,
+nama_barang VARCHAR(50) NOT NULL,
+jumlah INT NOT NULL,
+harga_beli DECIMAL(10,2) NOT NULL,
+harga_jual DECIMAL(10,2) NOT NULL);</code></pre>
+                    <li>
+                        <h6><b>Membuat Tabel Supplier</b></h6>
+                    </li>
+                    <pre><code class="language-sql">CREATE TABLE supplier (
+id INT PRIMARY KEY AUTO_INCREMENT,
+nama_supplier VARCHAR(50) NOT NULL,
+alamat TEXT,
+telepon VARCHAR(20));</code></pre>
+                    <li>
+                        <h6><b>Membuat Tabel Transaksi</b></h6>
+                    </li>
+                    <pre><code class="language-sql">CREATE TABLE transaksi (
+id INT PRIMARY KEY AUTO_INCREMENT,
+barang_id INT,
+supplier_id INT,
+tanggal_transaksi DATE NOT NULL,
+tipe ENUM('Masuk', 'Keluar') NOT NULL,
+jumlah INT NOT NULL);</code></pre>
+                </ol>
+                <h6><b>Hasil Akhir : </b></h6>
+                <img class="center-image mb-4" src="https://sqlyze-api.onrender.com/htmls/assets/images/db_inventori.png"
+                    alt="Pengertian DDL" width="330" height="auto" class="responsive">
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>
