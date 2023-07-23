@@ -122,8 +122,8 @@ RENAME COLUMN alamat TO alamat_lengkap;</code></pre>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                 <b>Menambahkan Primary Key</b>
                             </button>
                         </h2>
@@ -144,7 +144,7 @@ ADD PRIMARY KEY (id_buku);</code></pre>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingSix">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
                                 <b>Menghapus Primary Key</b>
                             </button>
@@ -166,7 +166,7 @@ DROP PRIMARY KEY;</code></pre>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingEight">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
                                 <b>Menghapus Foreign Key Dengan Nama Constraint</b>
                             </button>
@@ -187,8 +187,6 @@ DROP FOREIGN KEY fk_id_buku;</code></pre>
                         <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-
-
                                 <pre><code class="language-sql">ALTER TABLE nama_tabel
 ADD CONSTRAINT nama_constraint FOREIGN KEY (nama_kolom) 
 REFERENCES tabel_target(kolom_target);</code></pre>

@@ -11,7 +11,7 @@
                 <div class="text-center">
                     <img class="center-image mb-4"
                         src="https://img.freepik.com/free-vector/analytics-data-science-database-analysis-statistical-report-information-processing-automation-datacenter-expert-making-report-vector-isolated-concept-metaphor-illustration_335657-2781.jpg?w=826&t=st=1689329765~exp=1689330365~hmac=eda860531d46804c3b92e9d1d81d65db732b5a6157b7075458d6d2e2f4ed1a82"
-                        alt="Pengertian DDL" width="250" height="auto" class="responsive">
+                        alt="Pengertian DDL" width="200" height="auto" class="responsive">
                 </div>
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item">
@@ -26,31 +26,38 @@
                             <div class="accordion-body">
                                 <p><strong>Perintah ini digunakan untuk membuat struktur baru dalam basis data, seperti
                                         tabel, indeks, atau tampilan.</strong></p>
-                                <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <ol class="list-group">
+                                    <li class="list-group-item ">
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">CREATE TABLE</div>
                                             <p> Membuat tabel baru dengan kolom dan tipe data yang ditentukan. Contoh
                                                 sintaks:
-                                                <code>CREATE TABLE nama_tabel (kolom1 tipe_data, kolom2 tipe_data, ...);</code>
                                             </p>
+                                            <pre><code class="language-sql">CREATE TABLE nama_tabel 
+(kolom1 tipe_data, 
+kolom2 tipe_data, 
+...);</code></pre>
                                         </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <li class="list-group-item">
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">CREATE INDEX</div>
                                             <p>Membuat indeks pada kolom yang ditentukan untuk meningkatkan kecepatan
                                                 pencarian data. Contoh sintaks:
-                                                <code>CREATE INDEX nama_indeks ON nama_tabel (nama_kolom);</code>
+                                                <pre><code class="language-sql">CREATE INDEX 
+nama_indeks ON 
+nama_tabel (nama_kolom);</code></pre>
                                             </p>
                                         </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <li class="list-group-item">
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">CREATE VIEW</div>
                                             <p>Membuat tampilan baru yang merupakan hasil dari suatu query. Contoh
                                                 sintaks:
-                                                <code>CREATE VIEW nama_tampilan AS SELECT kolom1, kolom2 FROM nama_tabel;</code>
+                                                <pre><code class="language-sql">CREATE VIEW nama_tampilan 
+AS SELECT kolom1, kolom2 
+FROM nama_tabel;</code></pre>
                                             </p>
                                         </div>
                                     </li>
@@ -71,17 +78,18 @@
                                 <p><strong>Perintah ini digunakan untuk mengubah struktur basis data yang ada, seperti
                                         menambahkan kolom baru, menghapus kolom, atau mengubah tipe data kolom.</strong>
                                 </p>
-                                <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <ol class="list-group">
+                                    <li class="list-group-item">
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">ALTER TABLE</div>
                                             <p> Mengubah struktur tabel yang ada, seperti menambahkan kolom, menghapus
                                                 kolom, atau mengganti nama kolom. Contoh sintaks:
-                                                <code>ALTER TABLE nama_tabel ADD kolom tipe_data;</code>
+                                                <pre><code class="language-sql">ALTER TABLE nama_tabel 
+ADD kolom tipe_data;</code></pre>
                                             </p>
                                         </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <li class="list-group-item">
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">DROP</div>
                                             <p>Perintah ini digunakan untuk menghapus struktur basis data yang ada,
@@ -89,28 +97,29 @@
                                             </p>
                                         </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <li class="list-group-item">
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">DROP TABLE</div>
                                             <p>Menghapus tabel yang ada dalam basis data. Contoh sintaks:
-                                                <code>DROP TABLE nama_tabel;</code>
+                                                <pre><code class="language-sql">DROP TABLE nama_tabel;</code></pre>
                                             </p>
                                         </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <li class="list-group-item">
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">DROP INDEX</div>
                                             <p>Menghapus indeks yang ada pada kolom tertentu dalam tabel. Contoh
                                                 sintaks:
-                                                <code>DROP INDEX nama_indeks ON nama_tabel;</code>
+                                                <pre><code class="language-sql">DROP INDEX nama_indeks 
+ON nama_tabel;</code></pre>
                                             </p>
                                         </div>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <li class="list-group-item">
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">DROP VIEW</div>
                                             <p>Menghapus tampilan yang ada dalam basis data. Contoh sintaks:
-                                                <code>DROP VIEW nama_tampilan;</code>
+                                                <pre><code class="language-sql">DROP VIEW nama_tampilan;</code></pre>
                                             </p>
                                         </div>
                                     </li>
@@ -134,7 +143,8 @@
                                         lebih
                                         cepat dan efisien</b> karena tidak mencatat setiap penghapusan baris secara
                                     individual
-                                    dalam log transaksi. Contoh sintaks: <code>TRUNCATE TABLE nama_tabel;</code></p>
+                                    dalam log transaksi. Contoh sintaks: 
+                                    <pre><code class="language-sql">TRUNCATE TABLE nama_tabel;</code></pre></p>
                             </div>
                         </div>
                     </div>
@@ -150,12 +160,13 @@
                             <div class="accordion-body">
                                 <p><strong>Perintah ini digunakan untuk mengganti nama objek yang ada dalam basis data,
                                         seperti tabel</strong></p>
-                                <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <ol class="list-group">
+                                    <li class="list-group-item">
                                         <div class="ms-2 me-auto">
                                             <div class="fw-bold">RENAME TABLE</div>
                                             <p>Mengganti nama tabel yang ada dalam basis data. Contoh sintaks:
-                                                <code>ALTER TABLE nama_tabel_lama RENAME TO nama_tabel_baru;</code>
+                                                <pre><code class="language-sql">ALTER TABLE nama_tabel_lama 
+RENAME TO nama_tabel_baru;</code></pre>
                                             </p>
                                         </div>
                                     </li>

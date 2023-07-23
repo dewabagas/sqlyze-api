@@ -62,8 +62,7 @@
                 <pre><code class="language-sql">CREATE TABLE nama_tabel 
 (nama_kolom1 tipe_data_kolom1 atribut_kolom1, 
 nama_kolom2 tipe_data_kolom2 atribut_kolom2, 
-... );
-                          </code></pre>
+... );</code></pre>
                 <br />
                 Contoh : <br />
                 <pre><code class="language-sql">CREATE TABLE buku 
@@ -86,8 +85,7 @@ tanggal_pinjam DATE,
 tanggal_kembali DATE,
 CONSTRAINT fk_buku_id FOREIGN KEY (id_buku) REFERENCES buku(id_buku),
 CONSTRAINT fk_anggota_id FOREIGN KEY (id_anggota) REFERENCES anggota(id_anggota)
-)
-</code></pre>
+);</code></pre>
                 <p><strong>Hasil : </strong></p>
                 <img class="center-image mb-4"
                   src="https://sqlyze-api.onrender.com/htmls/assets/images/ddl_2_hasil_create_table.png"
@@ -113,11 +111,10 @@ CONSTRAINT fk_anggota_id FOREIGN KEY (id_anggota) REFERENCES anggota(id_anggota)
                   <br>
                   Sintaks dasar CREATE INDEX :
                 <pre><code class="language-sql">CREATE INDEX nama_indeks
-ON nama_tabel (nama_kolom1, nama_kolom2, ...);
-                  </code></pre>
+ON nama_tabel (nama_kolom1, nama_kolom2, ...);</code></pre>
                 <p>Contoh :</p>
-                <pre><code class="language-sql">CREATE INDEX idx_pengarang ON buku(pengarang);
-                                      </code></pre>
+                <pre><code class="language-sql">CREATE INDEX idx_pengarang 
+ON buku(pengarang);</code></pre>
                 </p>
               </div>
             </div>
@@ -144,8 +141,7 @@ ON nama_tabel (nama_kolom1, nama_kolom2, ...);
                 <pre><code class="language-sql"
                             >ALTER TABLE nama_tabel_lama 
 RENAME TO
-nama_tabel_baru;</code
-                          ></pre>
+nama_tabel_baru;</code></pre>
                 </p>
 
               </div>
