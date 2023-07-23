@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl"><b>Query Untuk Membuat VIEW</b></h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://img.freepik.com/free-vector/cloud-information-storage-collocated-cloud-computing-data-synchronization-harmonization-available-accesssible-digital-connected-backup-vector-isolated-concept-metaphor-illustration_335657-2791.jpg?w=826&t=st=1690074473~exp=1690075073~hmac=67928024382809268880c4dd21648aef27eb2696306307a20b90b2759f651a46"
+                        alt="Pengertian DDL" width="330" height="auto" class="responsive">
+                </div>
+                <h6><b>Query Dasar View</b></h6>
+                <p>
+                <pre><code class="language-sql">CREATE VIEW nama_view AS
+SELECT kolom1, kolom2, ...
+FROM nama_tabel
+WHERE kondisi;</code></pre>
+                </p>
+                <h6><b>Contoh</b></h6>
+                <p>Misalnya, kita ingin membuat view yang berisi <b>daftar peminjaman buku</b> dari perpustakaan yang belum
+                    dikembalikan, berikut adalah contoh query yang bisa digunakan:</p>
+                <p>
+                <pre><code class="language-sql">CREATE VIEW peminjaman_belum_kembali AS
+SELECT a.nama, b.judul, p.tanggal_pinjam
+FROM anggota a
+JOIN peminjaman p ON a.id_anggota = p.id_anggota
+JOIN buku b ON p.id_buku = b.id_buku
+WHERE p.tanggal_kembali IS NULL;</code></pre>
+                </p>
+                <p>Dengan view di atas, kita bisa dengan mudah mendapatkan daftar peminjaman yang belum dikembalikan
+                    hanya dengan melakukan <code>SELECT * FROM peminjaman_belum_kembali;</code></p>
+                <h6><b>Keterbatasan View</b></h6>
+                <p>Meski view sangat membantu, ada beberapa keterbatasan, tergantung pada sistem manajemen basis data
+                    yang digunakan. Beberapa sistem manajemen basis data <b>tidak memungkinkan perubahan data melalui view.</b>
+                    Selain itu, <b>tidak semua query bisa diubah menjadi view.</b> Misalnya, dalam MySQL, <b>query yang mengandung
+                    klausa ORDER BY, GROUP BY, atau variabel tidak bisa diubah menjadi view.</b> Selalu periksa dokumentasi
+                    sistem manajemen basis data Anda untuk mengetahui keterbatasan spesifiknya.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>

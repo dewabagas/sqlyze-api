@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl"><b>Query Untuk Membuat FUNCTION</b></h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://img.freepik.com/free-vector/cloud-information-storage-collocated-cloud-computing-data-synchronization-harmonization-available-accesssible-digital-connected-backup-vector-isolated-concept-metaphor-illustration_335657-2791.jpg?w=826&t=st=1690074473~exp=1690075073~hmac=67928024382809268880c4dd21648aef27eb2696306307a20b90b2759f651a46"
+                        alt="Pengertian DDL" width="330" height="auto" class="responsive">
+                </div>
+                <h6><b>Query Dasar Function</b></h6>
+                <p>
+                <pre><code class="language-sql">CREATE FUNCTION function_name ([parameter[,...]]) 
+RETURNS type [characteristic ...] 
+routine_body;</code></pre>
+                <b>Penjelasan Query</b>
+                <ul>
+                    <li>
+                        <b>function_name</b>, Nama dari fungsi.
+                    </li>
+                    <li><b>parameter</b>, Daftar parameter yang dipisahkan dengan koma.
+                    </li>
+                    <li><b>type</b>, Tipe data yang dikembalikan oleh fungsi.</li>
+                    <li><b>characteristic</b>, Karakteristik dari fungsi, bisa DETERMINISTIC, SQL DATA ACCESS, dan lainnya.
+                    </li>
+                    <li><b>routine_body</b>, Blok kode yang dijalankan saat fungsi dipanggil.
+                    </li>
+                </ul>
+                </p>
+                <h6><b>Contoh</b></h6>
+               
+                <pre><code class="language-sql">CREATE FUNCTION 
+jumlah_buku() RETURNS INT
+BEGIN
+DECLARE total INT;
+SELECT COUNT(*) INTO total FROM buku;
+RETURN total;
+END;</code></pre>
+<pre><code class="language-sql">CREATE PROCEDURE tampilkan_anggota()
+BEGIN
+SELECT * FROM anggota;
+END;</code></pre>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>
