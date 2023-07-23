@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <div id="header" />
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6">
+                <h5 class="mt-4 text-center" data-target="#definisi-fungsi-ddl"><b>Standar Penamaan</b></h5>
+                <div class="text-center">
+                    <img class="center-image mb-4"
+                        src="https://img.freepik.com/free-vector/hand-drawn-flat-design-website-hosting-illustration_23-2149231428.jpg?w=826&t=st=1690042252~exp=1690042852~hmac=5d6a5189a8587b2c1ca8612ec0639838bdc4854fb993d1b65e481aacd61b03dd"
+                        alt="Pengertian DDL" width="330" height="auto" class="responsive">
+                </div>
+                <h6><b>Pentingnya Standar Penamaan</b></h6>
+                <p>
+                    Dalam mengelola basis data, penting untuk menerapkan standar penamaan yang <b>konsisten dan mudah
+                    dimengerti</b>. Standar penamaan yang baik akan <b>memudahkan administrator dan pengguna basis data</b> untuk
+                    memahami struktur dan hubungan antar objek dalam basis data. Ketika mengganti nama objek dengan
+                    RENAME Statement, pastikan untuk <b>mengikuti standar penamaan yang telah ditetapkan.</b>
+                </p>
+                <h6><b>Hati - Hati Saat Mengganti Nama Objek</b></h6>
+                <p>Mengganti nama objek dalam basis data, seperti tabel dan kolom, <b>bisa menyebabkan masalah</b> jika ada
+                    kode atau aplikasi yang bergantung pada nama objek lama. Sebelum menggunakan RENAME Statement,
+                    pastikan untuk <b>mengganti referensi ke objek yang akan diubah namanya</b> dalam kode atau aplikasi yang
+                    terkait.</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../assets/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../components/header.html");
+            $("#footer").load("../components/footer.html");
+        });
+    </script>
+</body>
+
+</html>
