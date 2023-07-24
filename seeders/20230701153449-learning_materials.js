@@ -70,8 +70,8 @@ module.exports = {
       },
       {
         id: 8,
-        title: 'Latihan & Studi Kasus',
-        description: 'Praktik langsung dan penerapan konsep DDL.',
+        title: 'Pentingnya Memahami DDL Dalam Pengembangan Basis Data',
+        description: 'Mengapa DDL esensial dalam pengembangan DB',
         material_type: 1,
         is_locked: true,
         created_at: new Date(),
@@ -79,8 +79,8 @@ module.exports = {
       },
       {
         id: 9,
-        title: 'Pentingnya Memahami DDL Dalam Pengembangan Basis Data',
-        description: 'Mengapa DDL esensial dalam pengembangan DB',
+        title: 'Latihan & Studi Kasus',
+        description: 'Praktik langsung dan penerapan konsep DDL.',
         material_type: 1,
         is_locked: true,
         created_at: new Date(),
