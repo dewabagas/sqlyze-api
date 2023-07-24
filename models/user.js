@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.QuizAttempt, {
         foreignKey: 'user_id',
       });
+      User.belongsToMany(models.LearningMaterial, {
+        through: 'UserMaterial',
+        foreignKey: 'userId',
+        otherKey: 'materialId'
+      });
     }
   }
   User.init({

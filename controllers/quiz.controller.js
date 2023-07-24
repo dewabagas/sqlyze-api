@@ -251,11 +251,12 @@ exports.getQuizResult = async (req, res) => {
           where: { id: currentMaterial.id + 1 }
         });
 
-        console.log('nextMaterial', nextMaterial);
-
         if (nextMaterial) {
-          nextMaterial.is_locked = false;
-          await nextMaterial.save();
+          await UserMaterial.upsert({
+            userId: userId,
+            materialId: nextMaterial.id,
+            isUnlocked: true
+          });
         }
       }
     // }

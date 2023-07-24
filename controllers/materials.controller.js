@@ -3,8 +3,8 @@ const { LearningMaterial, Video, Podcast, LearningDocument, LearningPresentation
 const _ = require('lodash');
 
 exports.getAllMaterials = async (req, res) => {
-  const { materialType } = req.params;
-  console.log('params', req.params);
+  const { userId, materialType } = req.params;
+
   try {
     const materials = await LearningMaterial.findAll({
       where: {
@@ -12,24 +12,9 @@ exports.getAllMaterials = async (req, res) => {
       },
       include: [
         {
-          model: Video,
-          foreignKey: 'material_id'
-        },
-        {
-          model: Podcast,
-          foreignKey: 'material_id'
-        },
-        {
-          model: LearningDocument,
-          foreignKey: 'material_id'
-        },
-        {
-          model: LearningPresentation,
-          foreignKey: 'material_id'
-        },
-        {
-          model: LearningStep,
-          foreignKey: 'material_id'
+          model: User,
+          where: { id: userId },
+          through: { attributes: ['isUnlocked'] }
         },
       ],
       order: [ 
@@ -43,6 +28,8 @@ exports.getAllMaterials = async (req, res) => {
         result[_.snakeCase(key)] = plainMaterial[key];
         return result;
       }, {});
+
+      newMaterial.is_unlocked = plainMaterial.users[0].UserMaterial.isUnlocked;
 
       return newMaterial;
     });
