@@ -253,9 +253,9 @@ exports.getQuizResult = async (req, res) => {
 
         if (nextMaterial) {
           await UserMaterial.upsert({
-            userId: userId,
-            materialId: nextMaterial.id,
-            isUnlocked: true
+            user_id: userId,
+            material_id: nextMaterial.id,
+            is_unlocked: true
           });
         }
       }
@@ -288,6 +288,7 @@ exports.getQuizResult = async (req, res) => {
     });
   }
 };
+
 
 
 

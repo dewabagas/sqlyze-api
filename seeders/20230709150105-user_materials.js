@@ -1,24 +1,17 @@
-// File: seeders/users-seeder.js
+// File: migrations/<timestamp>-add-constraint-to-user-materials.js
 
 'use strict';
 
-const bcrypt = require('bcrypt');
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('users', [
-      {
-        id: 1,
-        user_id: 1,
-        material_id: 1,
-        is_unlocked: true,
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-    ]);
+    await queryInterface.addConstraint('user_materials', {
+      fields: ['user_id', 'material_id'],
+      type: 'unique',
+      name: 'user_materials_unique_constraint'
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('users', null, {});
-  },
+    await queryInterface.removeConstraint('user_materials', 'user_materials_unique_constraint');
+  }
 };

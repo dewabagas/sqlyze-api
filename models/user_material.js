@@ -39,7 +39,13 @@ module.exports = (sequelize) => {
     sequelize,
     modelName: 'UserMaterial',
     tableName: 'user_materials',
-    underscored: true
+    underscored: true,
+    uniqueKeys: {
+      unique_tag: {
+        customIndex: true,
+        fields: ['user_id', 'material_id']
+      }
+    }
   });
   return UserMaterial;
 };
