@@ -22,8 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       });
       LearningMaterial.belongsToMany(models.User, {
         through: 'UserMaterial',
-        foreignKey: 'materialId',
-        otherKey: 'userId'
+        foreignKey: 'material_id',
+        otherKey: 'user_id'
       });
     }
   }

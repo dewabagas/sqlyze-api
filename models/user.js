@@ -22,12 +22,20 @@ module.exports = (sequelize, DataTypes) => {
       });
       User.belongsToMany(models.LearningMaterial, {
         through: 'UserMaterial',
-        foreignKey: 'userId',
-        otherKey: 'materialId'
+        foreignKey: 'user_id',
+        otherKey: 'material_id'
+      });
+      User.hasMany(models.UserMaterial, {
+        foreignKey: 'user_id',
       });
     }
   }
   User.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     role: DataTypes.STRING,

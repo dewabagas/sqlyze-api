@@ -1,6 +1,6 @@
 const { sequelize } = require('../models');
 
-const { Quiz, QuizQuestion, QuizAnswer, QuizAttempt, User, Profile, LearningMaterial } = require('../models/index');
+const { Quiz, QuizQuestion, QuizAnswer, QuizAttempt, User, Profile, LearningMaterial, UserMaterial } = require('../models/index');
 const _ = require('lodash');
 
 exports.getQuizByMaterialId = async (req, res) => {

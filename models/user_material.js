@@ -1,24 +1,37 @@
-// UserMaterial.js
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+const { Model, DataTypes } = require('sequelize');
+module.exports = (sequelize) => {
   class UserMaterial extends Model {
     static associate(models) {
-      // define association here
+      UserMaterial.belongsTo(models.User, {
+        foreignKey: 'user_id',
+        targetKey: 'id'
+      });
+      UserMaterial.belongsTo(models.LearningMaterial, {
+        foreignKey: 'material_id',
+        targetKey: 'id'
+      });
+      models.LearningMaterial.belongsToMany(models.User, {
+        through: UserMaterial,
+        foreignKey: 'material_id',
+        otherKey: 'user_id'
+      });
+      models.User.belongsToMany(models.LearningMaterial, {
+        through: UserMaterial,
+        foreignKey: 'user_id',
+        otherKey: 'material_id'
+      });
     }
   }
   UserMaterial.init({
-    userId: {
+    user_id: {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-    materialId: {
+    material_id: {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-    isUnlocked: {
+    is_unlocked: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
