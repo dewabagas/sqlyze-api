@@ -27,7 +27,7 @@ exports.getAllMaterials = async (req, res) => {
           title: material.title,
           description: material.description,
           material_type: material.material_type,
-          is_locked: material.is_locked,
+          // is_locked: material.is_locked,
           is_unlocked: userMaterial ? userMaterial.UserMaterial.is_unlocked : false,
           created_at: material.createdAt,
           updated_at: material.updatedAt
