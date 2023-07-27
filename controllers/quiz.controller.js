@@ -1,6 +1,6 @@
 const { sequelize } = require('../models');
 
-const { Quiz, QuizQuestion, QuizAnswer, QuizAttempt, User, Profile, LearningMaterial } = require('../models/index');
+const { Quiz, QuizQuestion, QuizAnswer, QuizAttempt, User, Profile, LearningMaterial, UserMaterial } = require('../models/index');
 const _ = require('lodash');
 
 exports.getQuizByMaterialId = async (req, res) => {
@@ -135,17 +135,17 @@ exports.submitQuizAnswer = async (req, res) => {
       });
     }
 
-    const previousAttempt = await QuizAttempt.findOne({
-      where: { quiz_id: quiz_id, user_id: user_id }
-    });
+    // const previousAttempt = await QuizAttempt.findOne({
+    //   where: { quiz_id: quiz_id, user_id: user_id }
+    // });
 
-    if (previousAttempt) {
-      return res.status(403).send({
-        status: "FAILED",
-        code: 403,
-        message: "Quiz has already been attempted",
-      });
-    }
+    // if (previousAttempt) {
+    //   return res.status(403).send({
+    //     status: "FAILED",
+    //     code: 403,
+    //     message: "Quiz has already been attempted",
+    //   });
+    // }
 
     const [attempt, created] = await QuizAttempt.findOrCreate({
       where: { quiz_id: quiz_id, user_id: user_id },
@@ -251,11 +251,12 @@ exports.getQuizResult = async (req, res) => {
           where: { id: currentMaterial.id + 1 }
         });
 
-        console.log('nextMaterial', nextMaterial);
-
         if (nextMaterial) {
-          nextMaterial.is_locked = false;
-          await nextMaterial.save();
+          await UserMaterial.upsert({
+            user_id: userId,
+            material_id: nextMaterial.id,
+            is_unlocked: true
+          });
         }
       }
     // }
@@ -287,6 +288,7 @@ exports.getQuizResult = async (req, res) => {
     });
   }
 };
+
 
 
 

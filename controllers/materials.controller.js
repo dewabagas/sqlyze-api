@@ -1,58 +1,53 @@
 const db = require("../config/db");
-const { LearningMaterial, Video, Podcast, LearningDocument, LearningPresentation, LearningStep } = require("../models/index");
+const { LearningMaterial, Video, Podcast, LearningDocument, LearningPresentation, LearningStep, User, UserMaterial } = require("../models/index");
 const _ = require('lodash');
 
 exports.getAllMaterials = async (req, res) => {
   const { materialType } = req.params;
-  console.log('params', req.params);
+  const userId = req.id;
+
   try {
     const materials = await LearningMaterial.findAll({
-      where: {
-        material_type: materialType, 
-      },
+      where: { material_type: materialType },
       include: [
         {
-          model: Video,
-          foreignKey: 'material_id'
-        },
-        {
-          model: Podcast,
-          foreignKey: 'material_id'
-        },
-        {
-          model: LearningDocument,
-          foreignKey: 'material_id'
-        },
-        {
-          model: LearningPresentation,
-          foreignKey: 'material_id'
-        },
-        {
-          model: LearningStep,
-          foreignKey: 'material_id'
-        },
+          model: User,
+          through: { attributes: ['is_unlocked'] },
+          required: false
+        }
       ],
-      order: [ 
-        ['id', 'ASC'], 
-      ], 
+      order: [['id', 'ASC']]
     });
 
-    const transformedMaterials = materials.map(material => {
-      const plainMaterial = material.get({ plain: true });
-      const newMaterial = Object.keys(plainMaterial).reduce((result, key) => {
-        result[_.snakeCase(key)] = plainMaterial[key];
-        return result;
-      }, {});
+    if (materials) {
+      const transformedMaterials = materials.map(material => {
+        const userMaterial = material.Users.find(u => u.id === userId);
+        let newMaterial = {
+          id: material.id,
+          title: material.title,
+          description: material.description,
+          material_type: material.material_type,
+          // is_locked: material.is_locked,
+          is_unlocked: userMaterial ? userMaterial.UserMaterial.is_unlocked : false,
+          created_at: material.createdAt,
+          updated_at: material.updatedAt
+        };
 
-      return newMaterial;
-    });
+        return newMaterial;
+      });
 
-    res.status(200).send({
-      status: "SUCCESS",
-      code: 200,
-      message: "Materials fetched successfully",
-      result: transformedMaterials,
-    });
+      res.status(200).send({
+        status: "SUCCESS",
+        code: 200,
+        message: "Materials fetched successfully",
+        result: transformedMaterials,
+      });
+    } else {
+      res.status(404).send({
+        status: "FAILED",
+        message: "Materials not found",
+      });
+    }
   } catch (error) {
     console.error("error", error);
     res.status(500).send({
@@ -61,6 +56,10 @@ exports.getAllMaterials = async (req, res) => {
     });
   }
 };
+
+
+
+
 
 
 exports.getMaterialById = async (req, res) => {

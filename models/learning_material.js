@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       LearningMaterial.hasMany(models.LearningStep, {
         foreignKey: 'material_id',
       });
+      LearningMaterial.belongsToMany(models.User, {
+        through: 'UserMaterial',
+        foreignKey: 'material_id',
+        otherKey: 'user_id'
+      });
     }
   }
   LearningMaterial.init({
@@ -35,4 +40,3 @@ module.exports = (sequelize, DataTypes) => {
   });
   return LearningMaterial;
 };
-

@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { User, Profile } = require('../models');
+const { User, Profile, UserMaterial } = require('../models');
 const { generateToken } = require("../middlewares/auth");
 
 exports.register = async (req, res) => {
@@ -28,6 +28,12 @@ exports.register = async (req, res) => {
         profile_image_url
       });
 
+      await UserMaterial.create({
+        user_id: user.id,
+        material_id: 1,  // ID of the first learning material
+        is_unlocked: true
+      });
+
       const token = generateToken({ id: user.id, email: user.email });
 
       return res.status(201).json({
@@ -45,6 +51,7 @@ exports.register = async (req, res) => {
     return res.status(503).json({ message: 'User creation failed' });
   }
 };
+
 
 
 exports.login = async (req, res) => {

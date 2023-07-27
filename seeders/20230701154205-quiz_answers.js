@@ -1079,6 +1079,39 @@ module.exports = {
         created_at: new Date(),
         updated_at: new Date(),
       },
+      //
+      {
+        id: 130,
+        question_id: 27,
+        answer: 'Ya, Puas',
+        is_correct: false,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        id: 131,
+        question_id: 27,
+        answer: 'Lumayan',
+        is_correct: false,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        id: 132,
+        question_id: 27,
+        answer: 'Kurang',
+        is_correct: false,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        id: 133,
+        question_id: 27,
+        answer: 'Tidak Puas',
+        is_correct: false,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
 
     ]);
   },

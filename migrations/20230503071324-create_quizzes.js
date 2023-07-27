@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       duration: {
-        type: Sequelize.INTEGER
+        type: Sequelize.TIME
       },
       passing_score: {
         type: Sequelize.INTEGER

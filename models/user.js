@@ -20,9 +20,22 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.QuizAttempt, {
         foreignKey: 'user_id',
       });
+      User.belongsToMany(models.LearningMaterial, {
+        through: 'UserMaterial',
+        foreignKey: 'user_id',
+        otherKey: 'material_id'
+      });
+      User.hasMany(models.UserMaterial, {
+        foreignKey: 'user_id',
+      });
     }
   }
   User.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     role: DataTypes.STRING,
