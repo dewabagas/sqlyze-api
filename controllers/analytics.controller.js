@@ -1,4 +1,4 @@
-const { CumulativeLearningAnalytics, QuizAttempt, Quiz, QuizAttempt, QuizQuestion, QuizAnswer } = require('../models/index');
+const { CumulativeLearningAnalytics, QuizAttempt, Quiz, QuizQuestion, QuizAnswer } = require('../models/index');
 
 exports.getCumulativeAnalytics = async (req, res) => {
   const { userId } = req.params;
