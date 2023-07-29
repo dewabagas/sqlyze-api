@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     is_final_exam: DataTypes.BOOLEAN,
     duration: DataTypes.TIME,
     passing_score: DataTypes.INTEGER,
+    is_unlocked: DataTypes.BOOLEAN, 
   }, {
     sequelize,
     modelName: 'Quiz',

@@ -52,6 +52,7 @@ exports.getQuizByMaterialId = async (req, res) => {
       passing_score: newQuiz.passing_score,
       question_count: newQuiz.question_count,
       has_attempted: newQuiz.has_attempted,
+      is_unlocked: newQuiz.is_unlocked, // added field
       created_at: newQuiz.created_at,
       updated_at: newQuiz.updated_at,
     };
@@ -71,6 +72,7 @@ exports.getQuizByMaterialId = async (req, res) => {
     });
   }
 };
+
 
 
 exports.getQuizQuestions = async (req, res) => {
@@ -288,6 +290,61 @@ exports.getQuizResult = async (req, res) => {
     });
   }
 };
+
+exports.unlockQuiz = async (req, res) => {
+  const { materialId } = req.params;
+  const userId = req.id; 
+
+  try {
+    const learningMaterial = await LearningMaterial.findOne({
+      where: { id: materialId },
+      include: [{
+        model: User,
+        through: {
+          model: UserMaterial,
+          where: { user_id: userId }
+        }
+      }]
+    });
+
+    if (!learningMaterial) {
+      return res.status(404).send({
+        status: "FAILED",
+        code: 404,
+        message: "Learning material not found",
+      });
+    }
+
+    const quiz = await Quiz.findOne({
+      where: { material_id: materialId },
+    });
+
+    if (!quiz) {
+      return res.status(404).send({
+        status: "FAILED",
+        code: 404,
+        message: "Quiz not found",
+      });
+    }
+
+    quiz.is_unlocked = true;
+    await quiz.save();
+
+    res.status(200).send({
+      status: "SUCCESS",
+      code: 200,
+      message: "Quiz unlocked successfully",
+    });
+
+  } catch (error) {
+    console.error("error", error);
+    res.status(500).send({
+      status: "FAILED",
+      message: "Quiz unlocking failed",
+    });
+  }
+};
+
 
 
 

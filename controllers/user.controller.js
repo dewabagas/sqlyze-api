@@ -2,6 +2,16 @@ const bcrypt = require('bcrypt');
 const { User, Profile, UserMaterial } = require('../models');
 const { generateToken } = require("../middlewares/auth");
 
+async function generateUniqueUserId() {
+  while (true) {
+    const randomId = Math.floor(Math.random() * 100000);
+    const user = await User.findOne({ where: { id: randomId } });
+    if (!user) {
+      return randomId;
+    }
+  }
+}
+
 exports.register = async (req, res) => {
   const { full_name, email, nis, password, role, msisdn, birthdate, gender, profile_image_url } = req.body;
 
@@ -14,10 +24,12 @@ exports.register = async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
 
-    const user = await User.create({ email, password: hash, role });
+    const id = await generateUniqueUserId();
+    const user = await User.create({ id, email, password: hash, role });
 
     if (user) {
       const profile = await Profile.create({
+        id: id,
         user_id: user.id,
         full_name,
         nis,

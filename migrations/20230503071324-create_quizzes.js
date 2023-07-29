@@ -28,6 +28,10 @@ module.exports = {
       passing_score: {
         type: Sequelize.INTEGER
       },
+      is_unlocked: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
