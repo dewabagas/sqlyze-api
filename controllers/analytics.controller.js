@@ -67,6 +67,19 @@ exports.getUserLearningAnalytics = async (req, res) => {
     // Calculate the percentage of correct answers
     let performance_percentage = (total_correct_answers / total_questions) * 100;
 
+    // Get total answers and correct answers
+    let answers_per_quiz_attempt = [];
+    for (let attempt of attempts) {
+      let total_answers = attempt.correct_answers + attempt.incorrect_answers;
+      let correct_answers_percentage = (attempt.correct_answers / total_answers) * 100;
+      answers_per_quiz_attempt.push({
+        quiz_id: attempt.quiz_id,
+        total_answers,
+        correct_answers: attempt.correct_answers,
+        correct_answers_percentage,
+      });
+    }
+
     res.status(200).send({
       status: "SUCCESS",
       code: 200,
@@ -82,6 +95,7 @@ exports.getUserLearningAnalytics = async (req, res) => {
         total_questions,
         quiz_percentage,
         performance_percentage,
+        answers_per_quiz_attempt,
       },
     });
   } catch (error) {
@@ -92,6 +106,7 @@ exports.getUserLearningAnalytics = async (req, res) => {
     });
   }
 };
+
 
 
 
