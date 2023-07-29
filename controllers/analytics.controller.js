@@ -67,14 +67,14 @@ exports.getUserLearningAnalytics = async (req, res) => {
     // Calculate the percentage of correct answers
     let performance_percentage = (total_correct_answers / total_questions) * 100;
 
-    // Get total answers and correct answers
+    // Get total questions and correct answers for each quiz attempt
     let answers_per_quiz_attempt = [];
     for (let attempt of attempts) {
-      let total_answers = attempt.correct_answers + attempt.incorrect_answers;
-      let correct_answers_percentage = (attempt.correct_answers / total_answers) * 100;
+      let total_questions_in_quiz = await QuizQuestion.count({ where: { quiz_id: attempt.quiz_id } });
+      let correct_answers_percentage = (attempt.correct_answers / total_questions_in_quiz) * 100;
       answers_per_quiz_attempt.push({
         quiz_id: attempt.quiz_id,
-        total_answers,
+        total_questions: total_questions_in_quiz,
         correct_answers: attempt.correct_answers,
         correct_answers_percentage,
       });
@@ -106,6 +106,7 @@ exports.getUserLearningAnalytics = async (req, res) => {
     });
   }
 };
+
 
 
 
