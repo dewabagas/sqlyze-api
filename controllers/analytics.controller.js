@@ -1,4 +1,4 @@
-const { CumulativeLearningAnalytics, QuizAttempt } = require('../models/index');
+const { CumulativeLearningAnalytics, QuizAttempt, Quiz, QuizAttempt, QuizQuestion, QuizAnswer } = require('../models/index');
 
 exports.getCumulativeAnalytics = async (req, res) => {
   const { userId } = req.params;
@@ -56,7 +56,17 @@ exports.getUserLearningAnalytics = async (req, res) => {
     let total_correct_answers = attempts.reduce((acc, attempt) => acc + attempt.correct_answers, 0);
     let total_incorrect_answers = attempts.reduce((acc, attempt) => acc + attempt.incorrect_answers, 0);
     let total_duration = "00:00:00";  // You need to calculate total duration based on your start_time and end_time
-    
+
+    // Get total quizzes and total questions
+    let total_quizzes = await Quiz.count();
+    let total_questions = await QuizQuestion.count();
+
+    // Calculate the percentage of quizzes taken
+    let quiz_percentage = (total_quizzes_taken / total_quizzes) * 100;
+
+    // Calculate the percentage of correct answers
+    let performance_percentage = (total_correct_answers / total_questions) * 100;
+
     res.status(200).send({
       status: "SUCCESS",
       code: 200,
@@ -68,6 +78,10 @@ exports.getUserLearningAnalytics = async (req, res) => {
         total_correct_answers,
         total_incorrect_answers,
         total_duration,
+        total_quizzes,
+        total_questions,
+        quiz_percentage,
+        performance_percentage,
       },
     });
   } catch (error) {
@@ -78,5 +92,6 @@ exports.getUserLearningAnalytics = async (req, res) => {
     });
   }
 };
+
 
 
