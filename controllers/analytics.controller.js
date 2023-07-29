@@ -4,16 +4,19 @@ exports.getUserLearningAnalytics = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const analytics = await CumulativeLearningAnalytics.findOne({
+    let analytics = await CumulativeLearningAnalytics.findOne({
       where: { user_id: userId }
     });
 
     if (!analytics) {
-      return res.status(404).send({
-        status: "FAILED",
-        code: 404,
-        message: "No learning analytics found for the given user",
-      });
+      analytics = {
+        user_id: userId,
+        total_quizzes_taken: 0,
+        total_score: 0,
+        total_correct_answers: 0,
+        total_incorrect_answers: 0,
+        total_duration: "00:00:00"
+      };
     }
 
     res.status(200).send({
@@ -30,3 +33,4 @@ exports.getUserLearningAnalytics = async (req, res) => {
     });
   }
 };
+
