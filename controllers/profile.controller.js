@@ -43,7 +43,7 @@ exports.updateProfile = async (req, res) => {
     }
 
     const updatedProfileData = { full_name, email, nis, msisdn, birthdate, gender };
-    if (profile_image_url) updatedProfileData.profile_image_url = profile_image_url;
+    if (profile_image_url) updatedProfileData.profile_image_url = 'https://sqlyze-api.onrender.com/' + profile_image_url;
 
     const profile = await Profile.update(updatedProfileData,
       { where: { user_id: user.id } },
@@ -70,4 +70,5 @@ exports.updateProfile = async (req, res) => {
     });
   }
 };
+
 
