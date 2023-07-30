@@ -73,7 +73,7 @@ module.exports = {
         material_id: 9,
         title: 'Studi Kasus',
         document_type: 'PDF',
-        url: 'ddl_9_studi_kasus',
+        url: 'https://sqlyze-api.onrender.com/htmls/pdfs/ddl_9_studi_kasus.pdf',
         created_at: new Date(),
         updated_at: new Date(),
       },

@@ -5,7 +5,7 @@ const _ = require('lodash');
 
 exports.getQuizByMaterialId = async (req, res) => {
   const { materialId } = req.params;
-  const userId = req.id; // This is now retrieved from req.id, not req.user
+  const userId = req.id;
 
   try {
     const quiz = await Quiz.findOne({
@@ -15,6 +15,11 @@ exports.getQuizByMaterialId = async (req, res) => {
           model: QuizQuestion,
           attributes: [] 
         },
+        {
+          model: User,
+          through: { attributes: ['is_unlocked'] },
+          required: false
+        }
       ],
     });
 
@@ -34,8 +39,11 @@ exports.getQuizByMaterialId = async (req, res) => {
       where: { quiz_id: quiz.id, user_id: userId }
     });
 
+    const userQuiz = quiz.Users.find(u => u.id === userId);
+
     quiz.dataValues.questionCount = questionCount;
     quiz.dataValues.hasAttempted = !!attempt;
+    quiz.dataValues.is_unlocked = userQuiz ? userQuiz.UserQuiz.is_unlocked : false; // added field
 
     const plainQuiz = quiz.get({ plain: true });
     const newQuiz = Object.keys(plainQuiz).reduce((result, key) => {
@@ -72,6 +80,8 @@ exports.getQuizByMaterialId = async (req, res) => {
     });
   }
 };
+
+
 
 
 
