@@ -24,7 +24,8 @@ app.use(function(req, res, next) {
 });
 
 app.use(express.static('public'));
-app.use('/htmls', express.static('htmls'));  // added line
+app.use('/htmls', express.static('htmls'));  
+app.use('/uploads', express.static('uploads'))
 
 app.get('/htmls/:filename', function(req, res) {
   const filename = req.params.filename;
