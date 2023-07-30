@@ -40,6 +40,7 @@ exports.getUserLearningAnalytics = async (req, res) => {
   try {
     const attempts = await QuizAttempt.findAll({
       where: { user_id: userId },
+      order: [['quiz_id', 'ASC']], 
       raw: true,
     });
 
