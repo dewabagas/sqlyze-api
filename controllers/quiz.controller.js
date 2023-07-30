@@ -13,7 +13,7 @@ exports.getQuizByMaterialId = async (req, res) => {
       include: [
         {
           model: QuizQuestion,
-          attributes: [] 
+          attributes: []
         },
         {
           model: User,
@@ -69,7 +69,7 @@ exports.getQuizByMaterialId = async (req, res) => {
       status: "SUCCESS",
       code: 200,
       message: "Quiz fetched successfully",
-      result: reorderedQuiz, 
+      result: reorderedQuiz,
     });
 
   } catch (error) {
@@ -166,8 +166,8 @@ exports.submitQuizAnswer = async (req, res) => {
         correct_answers: 0,
         incorrect_answers: 0,
         duration: 0,
-        start_time: new Date(), 
-        end_time: new Date(),   
+        start_time: new Date(),
+        end_time: new Date(),
       }
     });
 
@@ -215,7 +215,7 @@ exports.getQuizResult = async (req, res) => {
       include: [
         {
           model: Quiz,
-          attributes: ['id', 'title', 'material_id'], 
+          attributes: ['id', 'title', 'material_id'],
         },
         {
           model: User,
@@ -223,7 +223,7 @@ exports.getQuizResult = async (req, res) => {
           include: [
             {
               model: Profile,
-              attributes: ['full_name', 'profile_image_url'], 
+              attributes: ['full_name', 'profile_image_url'],
             },
           ],
         },
@@ -254,23 +254,23 @@ exports.getQuizResult = async (req, res) => {
 
     // If user has passed the quiz
     // if (score >= quiz.passing_score) {
-      const currentMaterial = await LearningMaterial.findOne({
-        where: { id: quiz.material_id }
+    const currentMaterial = await LearningMaterial.findOne({
+      where: { id: quiz.material_id }
+    });
+
+    if (currentMaterial) {
+      const nextMaterial = await LearningMaterial.findOne({
+        where: { id: currentMaterial.id + 1 }
       });
 
-      if (currentMaterial) {
-        const nextMaterial = await LearningMaterial.findOne({
-          where: { id: currentMaterial.id + 1 }
+      if (nextMaterial) {
+        await UserMaterial.upsert({
+          user_id: userId,
+          material_id: nextMaterial.id,
+          is_unlocked: true
         });
-
-        if (nextMaterial) {
-          await UserMaterial.upsert({
-            user_id: userId,
-            material_id: nextMaterial.id,
-            is_unlocked: true
-          });
-        }
       }
+    }
     // }
 
     res.status(200).send({
@@ -282,7 +282,7 @@ exports.getQuizResult = async (req, res) => {
         quiz_name: attempt.Quiz.title,
         user_id: attempt.User.id,
         full_name: attempt.User.Profile.full_name,
-        profile_image_url: attempt.User.Profile.profile_image_url, 
+        profile_image_url: attempt.User.Profile.profile_image_url,
         total_questions: totalQuestions,
         correct_answers: correctAnswers,
         incorrect_answers: incorrectAnswers,
@@ -303,7 +303,7 @@ exports.getQuizResult = async (req, res) => {
 
 exports.unlockQuiz = async (req, res) => {
   const { materialId } = req.params;
-  const userId = req.id; 
+  const userId = req.id;
 
   try {
     const learningMaterial = await LearningMaterial.findOne({
@@ -337,8 +337,19 @@ exports.unlockQuiz = async (req, res) => {
       });
     }
 
-    quiz.is_unlocked = true;
-    await quiz.save();
+    let userQuiz = await UserQuiz.findOne({
+      where: { quiz_id: quiz.id, user_id: userId }
+    });
+
+    if (!userQuiz) {
+      userQuiz = await UserQuiz.create({
+        quiz_id: quiz.id,
+        user_id: userId,
+      });
+    }
+
+    userQuiz.is_unlocked = true;
+    await userQuiz.save();
 
     res.status(200).send({
       status: "SUCCESS",
@@ -354,6 +365,7 @@ exports.unlockQuiz = async (req, res) => {
     });
   }
 };
+
 
 
 
