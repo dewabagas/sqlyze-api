@@ -29,36 +29,39 @@
                                         <li>
                                             <p><b>INT</b>, Integer adalah tipe data numerik yang digunakan untuk
                                                 menyimpan bilangan bulat. Rentang nilai INT biasanya antara
-                                                -2.147.483.648 hingga 2.147.483.647.</p>
+                                                -2.147.483.648 hingga 2.147.483.647. Contoh : 10, 2500, 37850</p>
                                         </li>
                                         <li>
                                             <p><b>SMALLINT</b>, Small integer adalah tipe data numerik yang digunakan
                                                 untuk menyimpan bilangan bulat dengan rentang nilai yang lebih kecil
                                                 daripada INT. Rentang nilai SMALLINT biasanya antara -32.768 hingga
-                                                32.767.</p>
+                                                32.767. Contoh : 5000, 32000, 1560</p>
                                         </li>
                                         <li>
                                             <p><b>FLOAT</b>, Float adalah tipe data numerik yang digunakan untuk
                                                 menyimpan bilangan pecahan dengan presisi tunggal. Rentang nilai dan
                                                 presisi FLOAT bergantung pada sistem basis data yang digunakan. Contoh :
-                                                3.14159</p>
+                                                3.14159, 0.3333, 10.456789</p>
                                         </li>
                                         <li>
                                             <p><b>REAL</b>, Real adalah tipe data numerik yang digunakan untuk menyimpan
                                                 bilangan pecahan dengan presisi ganda. Rentang nilai dan presisi REAL
-                                                bergantung pada sistem basis data yang digunakan.</p>
+                                                bergantung pada sistem basis data yang digunakan. Contoh :
+                                                1.23456789012345, 9.87654321098765</p>
                                         </li>
                                         <li>
                                             <p><b>DECIMAL</b>, Decimal adalah tipe data numerik yang digunakan untuk
                                                 menyimpan
                                                 bilangan pecahan dengan presisi tetap. Pengguna dapat menentukan jumlah
-                                                digit total (P) dan jumlah digit desimal (S).
+                                                digit total (P) dan jumlah digit desimal (S). Contoh : 19.99, 123.45,
+                                                9876.54
                                             </p>
                                         </li>
                                         <li>
                                             <p><b>NUMERIC</b>, Numeric mirip dengan DECIMAL, tetapi memiliki presisi
                                                 yang lebih
-                                                tinggi dan rentang yang lebih besar.</p>
+                                                tinggi dan rentang yang lebih besar. Contoh : 12345.67890, 123.4567890
+                                            </p>
                                         </li>
                                     </ol>
                                 </div>
@@ -79,20 +82,24 @@
                                             <p><b>CHAR</b>, Character adalah tipe data karakter yang digunakan untuk
                                                 menyimpan
                                                 teks dengan panjang tetap. Panjang maksimum karakter yang dapat disimpan
-                                                dalam CHAR tergantung pada sistem basis data yang digunakan.</p>
+                                                dalam CHAR tergantung pada sistem basis data yang digunakan. Contoh :
+                                                'a', 'z', 'C'</p>
                                         </li>
                                         <li>
                                             <p><b>VARCHAR</b>, Variable character adalah tipe data karakter yang
                                                 digunakan
                                                 untuk menyimpan teks dengan panjang variabel. Panjang maksimum karakter
                                                 yang dapat disimpan dalam VARCHAR juga tergantung pada sistem basis data
-                                                yang digunakan.</p>
+                                                yang digunakan. Contoh : 'Hello, World!', 'SQL adalah bahasa pemrograman
+                                                database', 'Ini adalah contoh teks'</p>
                                         </li>
                                         <li>
                                             <p><b>TEXT</b>, Text adalah tipe data karakter yang digunakan untuk
                                                 menyimpan teks
                                                 dengan panjang yang sangat besar. TEXT biasanya digunakan untuk
-                                                menyimpan data seperti artikel, deskripsi produk, atau komentar.</p>
+                                                menyimpan data seperti artikel, deskripsi produk, atau komentar. Contoh
+                                                : 'Ini adalah teks panjang yang mungkin berisi beberapa paragraf.
+                                                Biasanya digunakan untuk artikel, komentar, dll.'</p>
                                         </li>
                                     </ol>
                                 </div>
@@ -111,16 +118,18 @@
                                     <ol>
                                         <li>
                                             <p><b>DATE</b>, Date adalah tipe data yang digunakan untuk menyimpan tanggal
-                                                dalam format YYYY-MM-DD.</p>
+                                                dalam format YYYY-MM-DD. Contoh : '2023-08-02', '2020-12-31',
+                                                '2000-07-07'</p>
                                         </li>
                                         <li>
                                             <p><b>TIME</b>, Time adalah tipe data yang digunakan untuk menyimpan waktu
-                                                dalam format HH:MI:SS</p>
+                                                dalam format HH:MI:SS. Contoh : '12:34:56', '23:59:59', '00:00:00'</p>
                                         </li>
                                         <li>
                                             <p><b>TIMESTAMP</b>, Timestamp adalah tipe data yang digunakan untuk
                                                 menyimpan informasi tanggal dan waktu dalam satu kolom. Format TIMESTAMP
-                                                biasanya adalah YYYY-MM-DD HH:MI:SS. Contoh : 2023-07-04 13:45:30</p>
+                                                biasanya adalah YYYY-MM-DD HH:MI:SS. Contoh : '2023-08-02 12:34:56',
+                                                '2020-12-31 23:59:59', '2000-07-07 00:00:00'</p>
                                         </li>
                                     </ol>
                                 </div>
@@ -141,17 +150,19 @@
                                             <p><b>BINARY</b>, Binary adalah tipe data yang digunakan untuk menyimpan
                                                 data biner dengan panjang tetap. Panjang maksimum data biner yang dapat
                                                 disimpan dalam BINARY tergantung pada sistem basis data yang digunakan.
+                                                (ini akan berupa data biner, biasanya digunakan untuk file seperti
+                                                gambar atau audio)
                                             </p>
                                         </li>
                                         <li>
                                             <p><b>VARBINARY</b>, Variable binary adalah tipe data yang digunakan untuk
                                                 menyimpan data biner dengan panjang variabel. Panjang maksimum data
                                                 biner yang dapat disimpan dalam VARBINARY juga tergantung pada sistem
-                                                basis data yang digunakan.</p>
+                                                basis data yang digunakan. (mirip dengan BINARY, ini akan berupa data biner)</p>
                                         </li>
                                         <li>
                                             <p><b>IMAGE</b>, Image adalah tipe data biner yang digunakan untuk menyimpan
-                                                gambar atau data biner dengan ukuran yang sangat besar</p>
+                                                gambar atau data biner dengan ukuran yang sangat besar. (ini akan berupa data biner, biasanya digunakan untuk file gambar)</p>
                                         </li>
                                     </ol>
                                 </div>
@@ -171,20 +182,20 @@
                                         <li>
                                             <p><b>BOOLEAN</b>, Boolean adalah tipe data yang digunakan untuk menyimpan
                                                 nilai
-                                                benar (TRUE) atau salah (FALSE).</p>
+                                                benar (TRUE) atau salah (FALSE). Contoh : TRUE, FALSE</p>
                                         </li>
                                         <li>
                                             <p><b>ENUM</b>, Enum adalah tipe data yang digunakan untuk menyimpan
                                                 nilai-nilai
                                                 yang telah didefinisikan sebelumnya. Setiap kolom ENUM hanya dapat
                                                 menyimpan satu nilai dari daftar nilai yang telah ditentukan. Misalnya,
-                                                ENUM('Merah', 'Biru', 'Hijau') untuk menyimpan warna.</p>
+                                                ENUM('Merah', 'Biru', 'Hijau') untuk menyimpan warna. Contoh : 'Merah', 'Biru', 'Hijau' (berasumsi ENUM telah didefinisikan dengan nilai-nilai ini)</p>
                                         </li>
                                         <li>
                                             <p><b>SET</b>, SET mirip dengan ENUM, tetapi dapat menyimpan beberapa nilai
                                                 dari
                                                 daftar nilai yang telah ditentukan. Misalnya, SET('Baca', 'Tulis',
-                                                'Edit') untuk menyimpan izin pengguna.</p>
+                                                'Edit') untuk menyimpan izin pengguna. Contoh : 'Baca', 'Tulis', 'Edit', 'Baca,Tulis', 'Baca,Edit', 'Tulis,Edit', 'Baca,Tulis,Edit' (berasumsi SET telah didefinisikan dengan nilai-nilai ini)</p>
                                         </li>
                                     </ol>
                                 </div>
